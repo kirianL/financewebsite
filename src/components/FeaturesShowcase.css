@@ -1,0 +1,322 @@
+.features-section {
+  background-color: var(--color-platform-bg);
+  padding-bottom: clamp(72px, 8vw, 110px);
+}
+
+.features-showcase {
+  position: relative;
+  border-radius: 12px;
+  padding: clamp(44px, 6vw, 72px) clamp(20px, 5vw, 64px);
+  overflow: hidden;
+  /* Warm diagonal golden-brown silk light beams matching 02-stats-features-integrations.jpg */
+  background:
+    linear-gradient(135deg, rgba(235, 205, 165, 0.22) 0%, transparent 38%, rgba(210, 165, 110, 0.18) 100%),
+    radial-gradient(ellipse 65% 55% at 92% 12%, rgba(251, 240, 218, 0.78) 0%, rgba(196, 166, 132, 0.28) 40%, transparent 72%),
+    radial-gradient(ellipse 55% 55% at 14% 88%, rgba(235, 216, 186, 0.66) 0%, rgba(168, 134, 102, 0.24) 45%, transparent 75%),
+    linear-gradient(128deg, #21100C 0%, #51372A 32%, #9B7F67 52%, #3D241C 72%, #1D0E0A 100%);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.45);
+}
+
+.features-showcase__head {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 4px;
+  background: #F5EFEB;
+  color: #2E1814;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-title-duotone {
+  margin-top: 18px;
+  font-size: clamp(32px, 3.6vw, 48px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.section-title-duotone__line {
+  display: block;
+}
+
+.section-title-duotone .text-bright {
+  color: #FFFFFF;
+}
+
+.section-title-duotone .text-muted {
+  color: rgba(255, 255, 255, 0.48);
+  font-weight: 400;
+}
+
+.section-subtitle {
+  margin-top: 14px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 480px;
+}
+
+.features-showcase__grid {
+  position: relative;
+  z-index: 2;
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.feature-card {
+  background: var(--color-feature-card);
+  border-radius: 4px;
+  padding: 8px 8px 24px;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-feature-card-text);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+.feature-card__tray {
+  background: radial-gradient(circle at 50% 0%, #3E281E 0%, #150B08 85%);
+  border-radius: 3px;
+  padding: 18px 18px 0;
+  overflow: hidden;
+}
+
+.feature-card__body {
+  padding: 20px 18px 0;
+  text-align: center;
+}
+
+.feature-card__title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: #1E0E0A;
+}
+
+.feature-card__desc {
+  margin-top: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #6B5E57;
+  max-width: 340px;
+  margin-inline: auto;
+}
+
+/* Inner White Dashboard Cards */
+.wallet-ui,
+.pnl-ui {
+  background: #FFFFFF;
+  border-radius: 8px 8px 0 0;
+  padding: 16px 18px 18px;
+  color: #1A1A1A;
+  min-height: 224px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
+}
+
+.wallet-ui__top,
+.pnl-ui__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.wallet-ui__label,
+.pnl-ui__label {
+  font-size: 10px;
+  font-weight: 500;
+  color: #7A7A7E;
+}
+
+.wallet-ui__balance {
+  margin-top: 2px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111111;
+}
+
+.wallet-ui__trend {
+  margin-top: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  color: #4B5563;
+}
+
+.wallet-ui__trend-icon {
+  color: #16A34A;
+}
+
+.wallet-ui__selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid #E5E7EB;
+  background: #FAFAFA;
+  font-size: 9.5px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.wallet-ui__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.wallet-ui__subhead {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9.5px;
+}
+
+.wallet-ui__subhead-title {
+  font-weight: 600;
+  color: #374151;
+}
+
+.wallet-ui__see-all {
+  color: #6B7280;
+}
+
+.wallet-ui__grid {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.wallet-mini {
+  background: #F9F9FB;
+  border: 1px solid #F0F0F3;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.wallet-mini__code-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.wallet-mini__coin {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+}
+
+.wallet-mini__code {
+  font-size: 9px;
+  font-weight: 600;
+  color: #4B5563;
+}
+
+.wallet-mini__amount {
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #111111;
+}
+
+.wallet-mini__status {
+  margin-top: 2px;
+  font-size: 8.5px;
+  font-weight: 500;
+  color: #16A34A;
+}
+
+/* Profit & Loss Heatmap */
+.pnl-ui__metric-row {
+  margin-top: 18px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pnl-ui__amount {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #111111;
+}
+
+.pnl-ui__budget {
+  margin-left: 5px;
+  font-size: 9px;
+  color: #9CA3AF;
+}
+
+.pnl-ui__legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  color: #6B7280;
+}
+
+.pnl-ui__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pnl-ui__legend-box {
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+}
+
+.pnl-ui__heatmap {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pnl-ui__heatmap-row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 5px;
+}
+
+.pnl-ui__cell {
+  aspect-ratio: 1 / 1;
+  border-radius: 3px;
+}
+
+.pnl-ui__months {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 5px;
+  text-align: center;
+  font-size: 8px;
+  color: #9CA3AF;
+}
+
+@media (max-width: 900px) {
+  .features-showcase__grid {
+    grid-template-columns: 1fr;
+  }
+}

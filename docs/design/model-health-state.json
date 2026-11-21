@@ -1,0 +1,30 @@
+{
+  "models": {
+    "openrouter/google/gemma-4-31b-it:free": {
+      "failures": 1,
+      "lastErrorType": "rate_limit",
+      "lastFailedAt": "2026-11-21T13:34:27.213Z",
+      "cooldownUntil": 1795268367213
+    },
+    "opencode/nemotron-3.5-super-vl-free": {
+      "failures": 1,
+      "lastErrorType": "rate_limit",
+      "lastFailedAt": "2026-11-21T13:35:17.270Z",
+      "cooldownUntil": 1795268417270
+    }
+  },
+  "providers": {
+    "openrouter": {
+      "failures": 1,
+      "lastErrorType": "rate_limit",
+      "lastFailedAt": "2026-11-21T13:34:27.213Z",
+      "cooldownUntil": 1795268367213
+    },
+    "opencode": {
+      "failures": 1,
+      "lastErrorType": "rate_limit",
+      "lastFailedAt": "2026-11-21T13:35:17.270Z",
+      "cooldownUntil": 1795268417270
+    }
+  }
+}

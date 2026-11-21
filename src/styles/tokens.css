@@ -1,0 +1,73 @@
+:root {
+  /* Hero (Canopy light) */
+  --color-hero-bg: #F9F5EA;
+  --color-hero-bg-deep: #F3EFE6;
+  --color-hero-text: #181916;
+  --color-hero-text-muted: #5C6057;
+  --color-hero-cta: #476330;
+  --color-hero-cta-hover: #3A5226;
+  --color-hero-badge-bg: #E6DFCE;
+  --color-hero-badge-mark: #2B3524;
+  --color-hero-nav-pill: rgba(255, 255, 255, 0.78);
+  --color-hero-nav-border: rgba(24, 25, 22, 0.08);
+
+  /* Platform (Synais dark espresso) */
+  --color-platform-bg: #311916;
+  --color-platform-elevated: #3A1C17;
+  --color-platform-text: #FFFFFF;
+  --color-platform-text-muted: #9E8E88;
+  --color-platform-text-sub: #B8ABA5;
+  --color-platform-border: rgba(255, 255, 255, 0.14);
+  --color-feature-tray: #1C0E0B;
+  --color-feature-card: #EAE4D7;
+  --color-feature-card-text: #1E0E0A;
+  --color-feature-card-muted: #6B5E57;
+  --color-tile-bg: #F5EFEB;
+
+  /* Pricing */
+  --color-price-top: #FFFFFF;
+  --color-price-bottom: #E4E1D2;
+  --color-price-pro-bottom: #2D1714;
+  --color-price-border: #DED8C7;
+  --color-price-text: #1E0E0A;
+  --color-price-muted: #6B5E57;
+  --color-price-cta-default: #F0ECE3;
+  --color-price-cta-pro: #2C1613;
+  --color-price-badge-bg: #EAE4D7;
+  --color-price-badge-text: #2C1613;
+  --color-toggle-track: #F5EFEB;
+  --color-toggle-active: #311916;
+  --color-toggle-active-text: #FFFFFF;
+  --color-toggle-inactive-text: #311916;
+
+  /* Footer */
+  --color-footer-bg: #050505;
+  --color-footer-text: #7A7A7E;
+  --color-footer-heading: #F5F3EE;
+  --color-footer-link: #8E8E93;
+  --color-footer-input-bg: #18181A;
+  --color-footer-input-border: rgba(255, 255, 255, 0.14);
+  --color-footer-wordmark: #EAE5DC;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --container-max: 1200px;
+  --container-pad: clamp(20px, 4vw, 56px);
+  --header-height: 76px;
+
+  /* Motion (emil-design-eng curves) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-fast: 160ms;
+  --dur-mid: 240ms;
+}
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --color-hero-bg: #F9F5EA;
+  --color-platform-bg: #311916;
+  --color-feature-card: #EAE4D7;
+  --color-footer-bg: #050505;
+}

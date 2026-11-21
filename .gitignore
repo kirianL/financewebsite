@@ -1,0 +1,20 @@
+# Landing dependencies, build & secrets
+node_modules/
+.next/
+dist/
+build/
+.env
+.env.*
+!.env.example
+*.log
+.opencode/
+docs/design/captures/
+docs/design/model-fallback-log.md
+docs/design/session-checkpoint.json
+docs/design/quality-gate*.json
+docs/design/compare-report.json
+docs/design/visual-credit-state.json
+docs/design/visual-engine-log.*
+docs/design/visual-plan.json
+docs/design/visual-manifest.json
+.visual-engine-state/

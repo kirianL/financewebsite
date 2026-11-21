@@ -1,0 +1,254 @@
+.hero-canopy {
+  position: relative;
+  width: 100%;
+  min-height: 100svh;
+  background: #FDF7EB;
+  color: var(--color-hero-text);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  padding-top: calc(var(--header-height) + clamp(44px, 7vh, 96px));
+  padding-bottom: clamp(180px, 24vh, 280px);
+}
+
+.hero-canopy__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: 32px;
+}
+
+.hero-canopy__copy {
+  position: relative;
+  z-index: 3;
+  max-width: 720px;
+}
+
+.hero-canopy__title {
+  font-size: clamp(38px, 4.6vw, 64px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--color-hero-text);
+}
+
+.hero-canopy__line {
+  display: block;
+}
+
+@media (min-width: 1025px) {
+  .hero-canopy__line {
+    white-space: nowrap;
+  }
+}
+
+.hero-canopy__line--accent {
+  margin-top: 6px;
+}
+
+.hero-canopy__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 16px 4px 8px;
+  border-radius: 6px;
+  background: var(--color-hero-badge-bg);
+  vertical-align: middle;
+  transition: transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+}
+
+.hero-canopy__pill:hover {
+  background: #DFD7C4;
+  transform: translateY(-1px);
+}
+
+.hero-canopy__pill-icon {
+  flex-shrink: 0;
+  width: clamp(34px, 3.6vw, 46px);
+  height: auto;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.hero-canopy__pill:hover .hero-canopy__pill-icon {
+  transform: scale(1.04);
+}
+
+.hero-canopy__subtitle {
+  margin-top: 26px;
+  max-width: 485px;
+  font-size: clamp(15px, 1.3vw, 17.5px);
+  line-height: 1.55;
+  color: var(--color-hero-text-muted);
+}
+
+.hero-canopy__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 13px 20px;
+  border-radius: 6px;
+  background: var(--color-hero-cta);
+  color: #FFFFFF;
+  font-size: 14.5px;
+  font-weight: 500;
+  transition: background-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.hero-canopy__cta-crc {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.92;
+  transition: background-color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.hero-canopy__cta:hover .hero-canopy__cta-crc {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateX(1px);
+}
+
+.hero-canopy__cta:hover {
+  background: var(--color-hero-cta-hover);
+}
+
+.hero-canopy__cta:active {
+  transform: scale(0.97);
+}
+
+.hero-canopy__visual {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Single Hero photograph positioned slightly lower so coins sit at a comfortable distance and moss never covers the CTA */
+.hero-canopy__img {
+  position: absolute;
+  right: 0;
+  bottom: -10%;
+  width: 100%;
+  height: auto;
+  max-height: 92%;
+  display: block;
+  object-fit: cover;
+  object-position: right bottom;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 14%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 14%);
+}
+
+@media (max-width: 1024px) {
+  .hero-canopy {
+    min-height: 100svh;
+    height: 100svh;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    padding-top: calc(var(--header-height) + 28px);
+    padding-bottom: 0;
+  }
+
+  .hero-canopy__inner {
+    grid-template-columns: 1fr;
+    padding-bottom: 12px;
+    flex-shrink: 0;
+  }
+
+  .hero-canopy__visual {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    flex: 1;
+    min-height: 260px;
+    margin-top: 8px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-canopy__moss-ext {
+    display: none;
+  }
+
+  .hero-canopy__img {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: 72% bottom;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 18%);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-canopy {
+    min-height: 100svh;
+    height: 100svh;
+    padding-top: 92px;
+    padding-bottom: 0;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  .hero-canopy__inner {
+    padding-bottom: 8px;
+    flex-shrink: 0;
+  }
+
+  .hero-canopy__title {
+    font-size: clamp(34px, 8.8vw, 42px);
+  }
+
+  .hero-canopy__subtitle {
+    margin-top: 16px;
+    font-size: 14.5px;
+  }
+
+  .hero-canopy__cta {
+    margin-top: 18px;
+  }
+
+  .hero-canopy__visual {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    flex: 1;
+    min-height: 240px;
+    margin-top: 4px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .hero-canopy__img {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: cover;
+    object-position: 74% bottom;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%);
+    mask-image: linear-gradient(to bottom, transparent 0%, black 18%);
+  }
+}
