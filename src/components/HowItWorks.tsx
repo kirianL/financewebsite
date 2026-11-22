@@ -1,40 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HOW_IT_WORKS_CONTENT } from '../data/content';
-import { CanopyMark, COSTA_RICA_BANKS, IntegrationTileIcon, SparkleIcon } from './SvgIcons';
+import {
+  COSTA_RICA_BANKS,
+  IntegrationTileIcon,
+  SparkleIcon,
+  SynaisBrandBadge,
+} from './SvgIcons';
 import './HowItWorks.css';
 
 const BANK_INDICES = [0, 1, 2, 3, 4]; // BAC, BN, BCR, BP, BCCR
 
-// Exact coordinates in 860x340 viewBox:
-// Left bank column right edge = 216
-// Center Kora hub = 382..478 (dead center x = 430, y = 170)
-// Right destination cards left edge = 644
+// Symmetrical 760x320 coordinate space:
+// Left bank badges right edge = 176
+// Dead-center Kora emblem = 342..418 (center x = 380, y = 160)
+// Right destination icons left edge = 584
 const INPUT_PATHS = [
-  'M 216 48 C 296 48, 318 170, 382 170',
-  'M 216 109 C 292 109, 318 170, 382 170',
-  'M 216 170 L 382 170',
-  'M 216 231 C 292 231, 318 170, 382 170',
-  'M 216 292 C 296 292, 318 170, 382 170',
+  'M 176 42 C 254 42, 278 160, 342 160',
+  'M 176 101 C 250 101, 278 160, 342 160',
+  'M 176 160 L 342 160',
+  'M 176 219 C 250 219, 278 160, 342 160',
+  'M 176 278 C 254 278, 278 160, 342 160',
 ];
 
 const OUTPUT_PATHS = [
-  { id: 'sinpe', d: 'M 478 170 C 542 170, 564 74, 644 74' },
-  { id: 'monex', d: 'M 478 170 L 644 170' },
-  { id: 'hacienda', d: 'M 478 170 C 542 170, 564 266, 644 266' },
+  { id: 'sinpe', d: 'M 418 160 C 482 160, 506 72, 584 72' },
+  { id: 'monex', d: 'M 418 160 L 584 160' },
+  { id: 'hacienda', d: 'M 418 160 C 482 160, 506 248, 584 248' },
 ];
 
 const OUTPUT_NODES = [
   {
     id: 'sinpe',
-    title: 'SINPE',
-    subtitle: 'Transferencias al instante',
-    tag: '₡ / $',
+    label: 'SINPE',
     icon: (
       <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path
           d="M4.5 7.5h11m0 0L12.5 4.5m3 3l-3 3M15.5 12.5h-11m0 0l3-3m-3 3l3 3"
           stroke="currentColor"
-          strokeWidth="1.6"
+          strokeWidth="1.65"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -43,9 +46,7 @@ const OUTPUT_NODES = [
   },
   {
     id: 'monex',
-    title: 'MONEX BCCR',
-    subtitle: 'Tipo de cambio oficial',
-    tag: '₡512.40',
+    label: 'MONEX BCCR',
     icon: (
       <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.6" />
@@ -60,9 +61,7 @@ const OUTPUT_NODES = [
   },
   {
     id: 'hacienda',
-    title: 'Hacienda',
-    subtitle: 'Comprobantes XML',
-    tag: 'v4.4',
+    label: 'Hacienda',
     icon: (
       <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <rect x="4" y="2.8" width="12" height="14.4" rx="2" stroke="currentColor" strokeWidth="1.6" />
@@ -78,6 +77,8 @@ const OUTPUT_NODES = [
 ];
 
 export const HowItWorks: React.FC = () => {
+  const [activeNode, setActiveNode] = useState<string | null>(null);
+
   return (
     <section id="process" className="process-section" aria-labelledby="process-heading">
       <div className="container process-section__inner">
@@ -101,9 +102,10 @@ export const HowItWorks: React.FC = () => {
           <p className="section-subtitle">{HOW_IT_WORKS_CONTENT.subtitle}</p>
         </div>
 
-        {/* Perfectly symmetrical 3-column architectural flow centered under headline */}
+        {/* Borderless, box-free symmetrical flow centered directly on #311916 */}
         <div
           className="process-stage"
+          data-active={activeNode ?? 'none'}
           data-reveal
           style={{ '--reveal-delay': '60ms' } as React.CSSProperties}
           role="img"
@@ -111,43 +113,64 @@ export const HowItWorks: React.FC = () => {
         >
           <svg
             className="process-stage__lines"
-            viewBox="0 0 860 340"
+            viewBox="0 0 760 320"
             preserveAspectRatio="none"
             aria-hidden="true"
           >
-            {INPUT_PATHS.map((d, i) => (
-              <g key={i}>
-                <path d={d} className="process-line__base" />
-                <path
-                  d={d}
-                  className="process-line__pulse"
-                  style={{ animationDelay: `${i * -0.38}s` }}
-                />
-              </g>
-            ))}
-            {OUTPUT_PATHS.map((item, i) => (
-              <g key={item.id}>
-                <path d={item.d} className="process-line__base" />
-                <path
-                  d={item.d}
-                  className="process-line__pulse process-line__pulse--out"
-                  style={{ animationDelay: `${i * -0.52}s` }}
-                />
-              </g>
-            ))}
+            {INPUT_PATHS.map((d, i) => {
+              const nodeId = `bank-${i}`;
+              const isHighlighted = activeNode === nodeId;
+              const isDimmed = activeNode !== null && activeNode.startsWith('bank-') && !isHighlighted;
+              return (
+                <g
+                  key={nodeId}
+                  className="process-conn"
+                  style={{ opacity: isDimmed ? 0.24 : 1 }}
+                >
+                  <path d={d} className="process-line__base" />
+                  <path
+                    d={d}
+                    className="process-line__pulse"
+                    style={{ animationDelay: `${i * -0.4}s` }}
+                  />
+                </g>
+              );
+            })}
+            {OUTPUT_PATHS.map((item, i) => {
+              const nodeId = `out-${item.id}`;
+              const isHighlighted = activeNode === nodeId;
+              const isDimmed = activeNode !== null && activeNode.startsWith('out-') && !isHighlighted;
+              return (
+                <g
+                  key={item.id}
+                  className="process-conn"
+                  style={{ opacity: isDimmed ? 0.24 : 1 }}
+                >
+                  <path d={item.d} className="process-line__base" />
+                  <path
+                    d={item.d}
+                    className="process-line__pulse process-line__pulse--out"
+                    style={{ animationDelay: `${i * -0.55}s` }}
+                  />
+                </g>
+              );
+            })}
           </svg>
 
           <div className="process-stage__grid">
-            {/* Left Column: Pure Costa Rican Bank SVG Logos */}
+            {/* Left: Pure Costa Rican Bank SVG Logos */}
             <div className="process-banks-col">
-              {BANK_INDICES.map((bankIdx) => {
+              {BANK_INDICES.map((bankIdx, i) => {
                 const bank = COSTA_RICA_BANKS[bankIdx];
+                const nodeId = `bank-${i}`;
                 return (
                   <div
                     key={bankIdx}
                     className="process-bank-item"
                     title={bank?.fullName}
                     aria-label={bank?.fullName}
+                    onMouseEnter={() => setActiveNode(nodeId)}
+                    onMouseLeave={() => setActiveNode(null)}
                   >
                     <IntegrationTileIcon index={bankIdx} />
                   </div>
@@ -155,27 +178,31 @@ export const HowItWorks: React.FC = () => {
               })}
             </div>
 
-            {/* Center Column: Dead-Center Kora Hub */}
+            {/* Center: Pure Box-Free Kora Emblem */}
             <div className="process-hub">
-              <span className="process-hub__halo" aria-hidden="true" />
-              <div className="process-hub__card">
-                <CanopyMark size={28} />
-                <span className="process-hub__label">Kora</span>
+              <span className="process-hub__ring" aria-hidden="true" />
+              <div className="process-hub__mark">
+                <SynaisBrandBadge size={42} />
+                <span className="process-hub__wordmark">kora.</span>
               </div>
             </div>
 
-            {/* Right Column: Architectural Dark-Glass Destination Modules */}
+            {/* Right: Clean Box-Free Icon + Label Destinations */}
             <div className="process-outputs-col">
-              {OUTPUT_NODES.map((node) => (
-                <div key={node.id} className="process-output-card">
-                  <span className="process-output-card__icon">{node.icon}</span>
-                  <div className="process-output-card__text">
-                    <span className="process-output-card__title">{node.title}</span>
-                    <span className="process-output-card__sub">{node.subtitle}</span>
+              {OUTPUT_NODES.map((node) => {
+                const nodeId = `out-${node.id}`;
+                return (
+                  <div
+                    key={node.id}
+                    className="process-output-node"
+                    onMouseEnter={() => setActiveNode(nodeId)}
+                    onMouseLeave={() => setActiveNode(null)}
+                  >
+                    <span className="process-output-node__icon">{node.icon}</span>
+                    <span className="process-output-node__label">{node.label}</span>
                   </div>
-                  <span className="process-output-card__tag tabular-nums">{node.tag}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

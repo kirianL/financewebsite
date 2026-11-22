@@ -17,13 +17,13 @@
   align-items: center;
 }
 
-/* Symmetrical 860px architectural stage dead-centered under the heading */
+/* Centered, box-free 760px constellation directly on #311916 */
 .process-stage {
   position: relative;
   margin-top: clamp(32px, 4vw, 48px);
   width: 100%;
-  max-width: 860px;
-  min-height: 340px;
+  max-width: 760px;
+  min-height: 320px;
 }
 
 .process-stage__lines {
@@ -33,6 +33,10 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
+}
+
+.process-conn {
+  transition: opacity var(--dur-fast) var(--ease-out);
 }
 
 .process-line__base {
@@ -45,7 +49,7 @@
 .process-line__pulse {
   fill: none;
   stroke: #EAE4DA;
-  stroke-width: 1.8;
+  stroke-width: 1.75;
   stroke-linecap: round;
   stroke-dasharray: 22 148;
   animation: koraStream 2.2s linear infinite;
@@ -53,7 +57,7 @@
 }
 
 .process-line__pulse--out {
-  stroke: #9CC789;
+  stroke: #B7CE9E;
   animation-duration: 2.4s;
 }
 
@@ -63,47 +67,46 @@
   }
 }
 
-/* Strict 1fr | auto | 1fr grid locks Kora Hub to the exact horizontal center */
 .process-stage__grid {
   position: relative;
   z-index: 1;
-  min-height: 340px;
+  min-height: 320px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 96px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 84px minmax(0, 1fr);
   align-items: center;
 }
 
-/* Left Column: Pure Costa Rican Bank SVG Logos aligned to x=216 */
+/* Left Column: Pure Bank Badges aligned to x=176 */
 .process-banks-col {
   justify-self: end;
-  padding-right: 166px;
+  padding-right: 162px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 286px;
+  height: 276px;
 }
 
 .process-bank-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.36));
-  transition: transform var(--dur-fast) var(--ease-out-quint);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.34));
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
 .process-bank-item svg {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   display: block;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .process-bank-item:hover {
-    transform: scale(1.07);
+    transform: scale(1.08);
   }
 }
 
-/* Center Column: Dead-Center Minimalist Kora Hub */
+/* Center Column: Pure Box-Free Kora Emblem */
 .process-hub {
   justify-self: center;
   position: relative;
@@ -112,151 +115,108 @@
   justify-content: center;
 }
 
-.process-hub__halo {
+.process-hub__ring {
   position: absolute;
-  width: 118px;
-  height: 118px;
-  border-radius: 30px;
-  border: 1px solid rgba(234, 228, 218, 0.24);
-  animation: koraHubBreath 3s var(--ease-out) infinite;
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 243, 238, 0.24);
+  animation: koraHubBreath 2.8s var(--ease-out) infinite;
   pointer-events: none;
 }
 
 @keyframes koraHubBreath {
   0% {
-    transform: scale(0.88);
-    opacity: 0.65;
+    transform: scale(0.86);
+    opacity: 0.7;
   }
   100% {
-    transform: scale(1.22);
+    transform: scale(1.36);
     opacity: 0;
   }
 }
 
-.process-hub__card {
+.process-hub__mark {
   position: relative;
   z-index: 1;
-  width: 96px;
-  height: 96px;
-  border-radius: 24px;
-  background: linear-gradient(180deg, #2B1512 0%, #1C0D0A 100%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.48);
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.42));
 }
 
-.process-hub__label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: #F5EFEB;
+.process-hub__wordmark {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #F5F3EE;
+  line-height: 1;
 }
 
-/* Right Column: Architectural Dark-Glass Modules aligned to x=644 */
+/* Right Column: Clean Box-Free Icon + Label Endpoints aligned to x=584 */
 .process-outputs-col {
   justify-self: start;
-  padding-left: 166px;
+  padding-left: 162px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 252px;
+  height: 212px;
 }
 
-.process-output-card {
-  width: 216px;
-  padding: 11px 13px;
-  border-radius: 11px;
-  background: rgba(22, 11, 9, 0.78);
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: #F5EFEB;
-  display: flex;
+.process-output-node {
+  display: inline-flex;
   align-items: center;
   gap: 11px;
-  transition:
-    transform var(--dur-fast) var(--ease-out-quint),
-    border-color var(--dur-fast) var(--ease-out);
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .process-output-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.26);
+  .process-output-node:hover {
+    transform: translateX(2px);
   }
 }
 
-.process-output-card__icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: #EAE4DA;
+.process-output-node__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: #F5EFEB;
   color: #2E1814;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.3));
 }
 
-.process-output-card__text {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  min-width: 0;
-  flex: 1;
-}
-
-.process-output-card__title {
-  font-size: 12.5px;
+.process-output-node__label {
+  font-size: 13.5px;
   font-weight: 600;
-  line-height: 1.2;
-  color: #FFFFFF;
+  letter-spacing: -0.015em;
+  color: #F5EFEB;
+  white-space: nowrap;
 }
 
-.process-output-card__sub {
-  margin-top: 2px;
-  font-size: 10px;
-  line-height: 1.2;
-  color: rgba(245, 239, 235, 0.62);
-}
-
-.process-output-card__tag {
-  font-size: 10px;
-  font-weight: 600;
-  color: #B7CE9E;
-  padding: 2px 6px;
-  border-radius: 5px;
-  background: rgba(183, 206, 158, 0.12);
-  flex-shrink: 0;
-}
-
-@media (max-width: 860px) {
+@media (max-width: 720px) {
   .process-stage {
-    max-width: 640px;
+    max-width: 520px;
   }
 
   .process-banks-col {
-    padding-right: clamp(32px, 10vw, 96px);
+    padding-right: clamp(28px, 10vw, 80px);
   }
 
   .process-outputs-col {
-    padding-left: clamp(32px, 10vw, 96px);
-  }
-
-  .process-output-card {
-    width: 186px;
+    padding-left: clamp(28px, 10vw, 80px);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 540px) {
   .process-stage,
   .process-stage__grid {
-    min-height: 290px;
+    min-height: 270px;
   }
 
   .process-stage__lines {
@@ -265,12 +225,12 @@
 
   .process-stage__grid {
     grid-template-columns: auto 1fr auto;
-    gap: 10px;
+    gap: 12px;
   }
 
   .process-banks-col {
     padding-right: 0;
-    height: 240px;
+    height: 224px;
   }
 
   .process-bank-item svg {
@@ -278,51 +238,28 @@
     height: 34px;
   }
 
-  .process-hub__card {
-    width: 74px;
-    height: 74px;
-    border-radius: 18px;
-  }
-
-  .process-hub__halo {
-    width: 92px;
-    height: 92px;
-    border-radius: 24px;
-  }
-
   .process-outputs-col {
     padding-left: 0;
-    height: 210px;
+    height: 176px;
   }
 
-  .process-output-card {
-    width: 150px;
-    padding: 8px 10px;
-    gap: 8px;
+  .process-output-node__icon {
+    width: 32px;
+    height: 32px;
   }
 
-  .process-output-card__icon {
-    width: 26px;
-    height: 26px;
-  }
-
-  .process-output-card__title {
-    font-size: 11px;
-  }
-
-  .process-output-card__sub,
-  .process-output-card__tag {
-    display: none;
+  .process-output-node__label {
+    font-size: 12px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .process-line__pulse,
-  .process-hub__halo {
+  .process-hub__ring {
     animation: none;
   }
 
-  .process-hub__halo {
+  .process-hub__ring {
     opacity: 0.3;
   }
 }
