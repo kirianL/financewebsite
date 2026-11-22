@@ -17,13 +17,13 @@
   align-items: center;
 }
 
-/* Centered, box-free 760px constellation directly on #311916 */
+/* Centered, box-free 960px constellation directly on #311916 */
 .process-stage {
   position: relative;
-  margin-top: clamp(32px, 4vw, 48px);
+  margin-top: clamp(36px, 4.5vw, 56px);
   width: 100%;
-  max-width: 760px;
-  min-height: 320px;
+  max-width: 960px;
+  min-height: 400px;
 }
 
 .process-stage__lines {
@@ -80,20 +80,20 @@
 .process-stage__grid {
   position: relative;
   z-index: 1;
-  min-height: 320px;
+  min-height: 400px;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 84px minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 108px minmax(0, 1fr);
   align-items: center;
 }
 
-/* Left Column: Pure Bank Badges aligned to x=176 */
+/* Left Column: Pure Bank Badges aligned to x=230 */
 .process-banks-col {
   justify-self: end;
-  padding-right: 162px;
+  padding-right: 196px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 276px;
+  height: 344px;
 }
 
 .process-bank-item {
@@ -105,8 +105,8 @@
 }
 
 .process-bank-item svg {
-  width: 40px;
-  height: 40px;
+  width: 52px;
+  height: 52px;
   display: block;
 }
 
@@ -127,8 +127,8 @@
 
 .process-hub__ring {
   position: absolute;
-  width: 86px;
-  height: 86px;
+  width: 112px;
+  height: 112px;
   border-radius: 50%;
   border: 1px solid rgba(245, 243, 238, 0.24);
   animation: koraHubBreath 2.8s var(--ease-out) infinite;
@@ -158,27 +158,27 @@
 }
 
 .process-hub__wordmark {
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.025em;
   color: #F5F3EE;
   line-height: 1;
 }
 
-/* Right Column: Clean Box-Free Icon + Label Endpoints aligned to x=584 */
+/* Right Column: Clean Box-Free Icon + Label Endpoints aligned to x=730 */
 .process-outputs-col {
   justify-self: start;
-  padding-left: 162px;
+  padding-left: 196px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 212px;
+  height: 266px;
 }
 
 .process-output-node {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
+  gap: 14px;
   transition: transform var(--dur-fast) var(--ease-out);
 }
 
@@ -189,9 +189,9 @@
 }
 
 .process-output-node__icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
   background: #F5EFEB;
   color: #2E1814;
   display: inline-flex;
@@ -202,16 +202,26 @@
 }
 
 .process-output-node__label {
-  font-size: 13.5px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: -0.015em;
   color: #F5EFEB;
   white-space: nowrap;
 }
 
+@media (max-width: 960px) {
+  .process-banks-col {
+    padding-right: clamp(48px, 14vw, 140px);
+  }
+
+  .process-outputs-col {
+    padding-left: clamp(48px, 14vw, 140px);
+  }
+}
+
 @media (max-width: 720px) {
   .process-stage {
-    max-width: 520px;
+    max-width: 560px;
   }
 
   .process-banks-col {

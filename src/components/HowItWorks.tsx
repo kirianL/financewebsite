@@ -10,22 +10,22 @@ import './HowItWorks.css';
 
 const BANK_INDICES = [0, 1, 2, 3, 4]; // BAC, BN, BCR, BP, BCCR
 
-// Symmetrical 760x320 coordinate space:
-// Left bank badges right edge = 176
-// Dead-center Kora emblem = 342..418 (center x = 380, y = 160)
-// Right destination icons left edge = 584
+// Symmetrical 960x400 coordinate space:
+// Left bank badges right edge = 230 (line start x = 234)
+// Dead-center Kora emblem = 426..534 (center x = 480, y = 200)
+// Right destination icons left edge = 730 (line end x = 726)
 const INPUT_PATHS = [
-  'M 176 42 C 254 42, 278 160, 342 160',
-  'M 176 101 C 250 101, 278 160, 342 160',
-  'M 176 160 L 342 160',
-  'M 176 219 C 250 219, 278 160, 342 160',
-  'M 176 278 C 254 278, 278 160, 342 160',
+  'M 234 54 C 324 54, 346 200, 426 200',
+  'M 234 127 C 320 127, 346 200, 426 200',
+  'M 234 200 L 426 200',
+  'M 234 273 C 320 273, 346 200, 426 200',
+  'M 234 346 C 324 346, 346 200, 426 200',
 ];
 
 const OUTPUT_PATHS = [
-  { id: 'sinpe', d: 'M 418 160 C 482 160, 506 72, 584 72' },
-  { id: 'monex', d: 'M 418 160 L 584 160' },
-  { id: 'hacienda', d: 'M 418 160 C 482 160, 506 248, 584 248' },
+  { id: 'sinpe', d: 'M 534 200 C 614 200, 636 90, 726 90' },
+  { id: 'monex', d: 'M 534 200 L 726 200' },
+  { id: 'hacienda', d: 'M 534 200 C 614 200, 636 310, 726 310' },
 ];
 
 const OUTPUT_NODES = [
@@ -33,7 +33,7 @@ const OUTPUT_NODES = [
     id: 'sinpe',
     label: 'SINPE',
     icon: (
-      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path
           d="M4.5 7.5h11m0 0L12.5 4.5m3 3l-3 3M15.5 12.5h-11m0 0l3-3m-3 3l3 3"
           stroke="currentColor"
@@ -48,7 +48,7 @@ const OUTPUT_NODES = [
     id: 'monex',
     label: 'MONEX BCCR',
     icon: (
-      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.6" />
         <path
           d="M12.4 7.8a3.2 3.2 0 00-4.6 0 3.3 3.3 0 000 4.4 3.2 3.2 0 004.6 0M9.3 5.2l-1.2 9.6M11.7 5.2l-1.2 9.6"
@@ -63,7 +63,7 @@ const OUTPUT_NODES = [
     id: 'hacienda',
     label: 'Hacienda',
     icon: (
-      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <rect x="4" y="2.8" width="12" height="14.4" rx="2" stroke="currentColor" strokeWidth="1.6" />
         <path
           d="M7.2 7.5h5.6M7.2 10.5h5.6M7.2 13.5h3.4"
@@ -113,7 +113,7 @@ export const HowItWorks: React.FC = () => {
         >
           <svg
             className="process-stage__lines"
-            viewBox="0 0 760 320"
+            viewBox="0 0 960 400"
             preserveAspectRatio="none"
             aria-hidden="true"
           >
@@ -121,9 +121,9 @@ export const HowItWorks: React.FC = () => {
               <linearGradient
                 id="koraBaseLineIn"
                 gradientUnits="userSpaceOnUse"
-                x1="176"
+                x1="234"
                 y1="0"
-                x2="342"
+                x2="426"
                 y2="0"
               >
                 <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
@@ -134,9 +134,9 @@ export const HowItWorks: React.FC = () => {
               <linearGradient
                 id="koraBaseLineOut"
                 gradientUnits="userSpaceOnUse"
-                x1="418"
+                x1="534"
                 y1="0"
-                x2="584"
+                x2="726"
                 y2="0"
               >
                 <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
@@ -147,9 +147,9 @@ export const HowItWorks: React.FC = () => {
               <linearGradient
                 id="koraPulseIn"
                 gradientUnits="userSpaceOnUse"
-                x1="176"
+                x1="234"
                 y1="0"
-                x2="342"
+                x2="426"
                 y2="0"
               >
                 <stop offset="0%" stopColor="#EAE4DA" stopOpacity="0" />
@@ -160,9 +160,9 @@ export const HowItWorks: React.FC = () => {
               <linearGradient
                 id="koraPulseOut"
                 gradientUnits="userSpaceOnUse"
-                x1="418"
+                x1="534"
                 y1="0"
-                x2="584"
+                x2="726"
                 y2="0"
               >
                 <stop offset="0%" stopColor="#B7CE9E" stopOpacity="0" />
@@ -236,7 +236,7 @@ export const HowItWorks: React.FC = () => {
             <div className="process-hub">
               <span className="process-hub__ring" aria-hidden="true" />
               <div className="process-hub__mark">
-                <SynaisBrandBadge size={42} />
+                <SynaisBrandBadge size={54} />
                 <span className="process-hub__wordmark">kora.</span>
               </div>
             </div>
