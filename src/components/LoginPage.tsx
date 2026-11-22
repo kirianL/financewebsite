@@ -16,7 +16,7 @@ interface LoginPageProps {
   onNavigateHome: () => void;
 }
 
-const SHOWCASE_BANK_IDS = [0, 1, 2, 3, 4, 6, 9];
+const SHOWCASE_BANK_IDS = [0, 1, 2, 3, 4, 6];
 
 const MINI_BALANCES = [
   { code: 'CRC', symbol: '₡', amount: '₡138,450,200', status: 'SINPE Activo' },
