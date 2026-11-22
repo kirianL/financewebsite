@@ -3,7 +3,10 @@ import { Navbar } from './components/Navbar';
 import { HeroCanopy } from './components/HeroCanopy';
 import { StatsBar } from './components/StatsBar';
 import { FeaturesShowcase } from './components/FeaturesShowcase';
+import { HowItWorks } from './components/HowItWorks';
 import { IntegrationsGrid } from './components/IntegrationsGrid';
+import { SecurityCompliance } from './components/SecurityCompliance';
+import { Testimonials } from './components/Testimonials';
 import { PricingSection } from './components/PricingSection';
 import { FooterSynais } from './components/FooterSynais';
 import { LoginPage } from './components/LoginPage';
@@ -83,7 +86,10 @@ export const App: React.FC = () => {
           <HeroCanopy />
           <StatsBar />
           <FeaturesShowcase />
+          <HowItWorks />
           <IntegrationsGrid />
+          <SecurityCompliance />
+          <Testimonials />
           <PricingSection />
           <FooterSynais />
         </main>

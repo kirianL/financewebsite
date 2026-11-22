@@ -171,6 +171,108 @@ export const PRICING_CONTENT = {
   ] as PricingTier[],
 };
 
+export const HOW_IT_WORKS_CONTENT = {
+  badge: 'PROCESO',
+  titleStart: 'Conecta',
+  titleMuted1: 'tu banca',
+  titleMuted2: 'en tres',
+  titleEnd: 'pasos',
+  subtitle:
+    'Vincula tus cuentas del BAC, BCR y Banco Nacional, concilia movimientos SINPE e IBAN y genera reportes listos para Hacienda en minutos.',
+  ctaLabel: 'Conectar banca CR',
+  steps: [
+    {
+      number: '01',
+      title: 'Vincula tus bancos',
+      description:
+        'Conecta BAC, BCR, BN, Banco Popular y cooperativas mediante canales seguros y SINPE empresarial en un solo panel.',
+    },
+    {
+      number: '02',
+      title: 'Concilia en automático',
+      description:
+        'Kora cruza movimientos bancarios, facturas electrónicas y pagos IBAN con tipo de cambio MONEX del BCCR sin captura manual.',
+    },
+    {
+      number: '03',
+      title: 'Reporta y decide',
+      description:
+        'Obtén flujo de caja, ejecución presupuestaria y cierres listos para Hacienda con trazabilidad estándar SUGEF.',
+    },
+  ],
+};
+
+export const SECURITY_CONTENT = {
+  badge: 'CUMPLIMIENTO CR',
+  titleStart: 'Respaldo',
+  titleMuted1: 'regulatorio y',
+  titleMuted2: 'control',
+  titleEnd: 'financiero',
+  subtitle:
+    'Diseñado para operar bajo los estándares de auditoría, facturación y tipo de cambio oficiales de Costa Rica.',
+  pillars: [
+    {
+      id: 'sugef',
+      title: 'Trazabilidad SUGEF',
+      description: 'Bitácora inmutable por usuario, cédula jurídica y centro de costo para auditorías internas.',
+    },
+    {
+      id: 'bccr',
+      title: 'Tipo de cambio BCCR',
+      description: 'Sincronización directa de referencia MONEX, compra y venta oficial sin hojas de cálculo.',
+    },
+    {
+      id: 'hacienda',
+      title: 'Validación Hacienda',
+      description: 'Cruce automático de comprobantes electrónicos XML con cada transferencia SINPE e IBAN.',
+    },
+    {
+      id: 'tls',
+      title: 'Cifrado TLS 1.3 + MFA',
+      description: 'Accesos por roles de aprobación mancomunada y llaves de sesión de un solo uso.',
+    },
+  ],
+};
+
+export const TESTIMONIALS_CONTENT = {
+  badge: 'CASOS DE ÉXITO',
+  titleStart: 'Empresas',
+  titleMuted1: 'que ya',
+  titleMuted2: 'confían en',
+  titleEnd: 'Kora',
+  subtitle:
+    'Gerentes financieros y CFOs de pymes costarricenses que automatizaron su tesorería diaria.',
+  items: [
+    {
+      id: 'san-jose',
+      quote:
+        'Pasamos de conciliar en hojas de cálculo a tener el flujo de caja del día en Kora. El cierre fiscal con Hacienda nos tomó la mitad del tiempo.',
+      author: 'María Fernández',
+      role: 'Gerente financiera · Distribuidora en San José',
+      metric: '-52% tiempo de cierre',
+      image: '/images/testimonial-1.webp',
+    },
+    {
+      id: 'heredia',
+      quote:
+        'El tipo de cambio MONEX en tiempo real nos evitó errores en pagos a proveedores en dólares. Cada movimiento SINPE e IBAN queda listo para auditoría SUGEF.',
+      author: 'Carlos Jiménez',
+      role: 'CFO · Empresa de servicios en Heredia',
+      metric: '100% conciliación diaria',
+      image: '/images/testimonial-2.webp',
+    },
+    {
+      id: 'alajuela',
+      quote:
+        'Conectar BAC, BCR y BN en un solo panel nos dio visibilidad real de nuestra liquidez en colones y euros. El equipo financiero ahorra horas cada semana.',
+      author: 'Ana Rodríguez',
+      role: 'Directora administrativa · Pyme exportadora en Alajuela',
+      metric: '4 bancos centralizados',
+      image: '/images/testimonial-3.webp',
+    },
+  ],
+};
+
 export const FOOTER_CONTENT = {
   brand: 'kora.',
   tagline:
