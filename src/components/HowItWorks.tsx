@@ -97,8 +97,8 @@ export const HowItWorks: React.FC = () => {
   return (
     <section id="process" className="process-section" aria-labelledby="process-heading">
       <div className="container process-section__inner">
-        <div className="process-section__head" data-reveal>
-          <span className="section-badge">
+        <div className="process-section__head">
+          <span className="section-badge" data-reveal>
             <SparkleIcon size={11} />
             <span>{HOW_IT_WORKS_CONTENT.badge}</span>
           </span>

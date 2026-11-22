@@ -9,10 +9,10 @@ export interface TextReveal01Options {
 }
 
 const CONFIG = {
-  lines: { duration: 1, stagger: 0.06, ease: 'expo.out' },
-  words: { duration: 1, stagger: 0.03, ease: 'expo.out' },
-  chars: { duration: 0.6, stagger: 0.01, ease: 'expo.out' },
-  scrollStart: 'top 94%',
+  lines: { duration: 0.72, stagger: 0.05, ease: 'expo.out' },
+  words: { duration: 0.72, stagger: 0.025, ease: 'expo.out' },
+  chars: { duration: 0.5, stagger: 0.01, ease: 'expo.out' },
+  scrollStart: 'top 95%',
   scrubStart: 'top 80%',
   scrubEnd: 'top 20%',
   once: true,
@@ -145,13 +145,17 @@ export function textReveal01(
               ...(once && { onLeave: (self) => self.kill(false) }),
             };
           } else if (useScroll) {
-            const start = scrollMode || CONFIG.scrollStart;
-            tween.scrollTrigger = {
-              trigger: el,
-              start: `clamp(${start})`,
-              markers: CONFIG.markers,
-              ...(once ? { once: true } : { toggleActions: 'play none none reverse' }),
-            };
+            const alreadyInView =
+              el.getBoundingClientRect().top <= (window.innerHeight || 900) * 0.95;
+            if (!alreadyInView) {
+              const start = scrollMode || CONFIG.scrollStart;
+              tween.scrollTrigger = {
+                trigger: el,
+                start: `clamp(${start})`,
+                markers: CONFIG.markers,
+                ...(once ? { once: true } : { toggleActions: 'play none none reverse' }),
+              };
+            }
           }
 
           return gsap.from(targets, tween);

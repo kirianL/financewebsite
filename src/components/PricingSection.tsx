@@ -20,8 +20,8 @@ export const PricingSection: React.FC = () => {
   return (
     <section id="pricing" className="pricing-section" aria-labelledby="pricing-heading">
       <div className="container pricing-section__inner">
-        <div className="pricing-section__head" data-reveal>
-          <span className="section-badge">
+        <div className="pricing-section__head">
+          <span className="section-badge" data-reveal>
             <SparkleIcon size={11} />
             <span>{PRICING_CONTENT.badge}</span>
           </span>

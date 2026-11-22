@@ -92,8 +92,8 @@ export const Testimonials: React.FC = () => {
   return (
     <section id="testimonials" className="testimonials-section" aria-labelledby="testimonials-heading">
       <div className="container testimonials-section__inner">
-        <div className="testimonials-section__head" data-reveal>
-          <span className="section-badge testimonials-badge">
+        <div className="testimonials-section__head">
+          <span className="section-badge testimonials-badge" data-reveal>
             <SparkleIcon size={11} />
             <span>{TESTIMONIALS_CONTENT.badge}</span>
           </span>

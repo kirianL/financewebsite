@@ -36,8 +36,8 @@ export const SecurityCompliance: React.FC = () => {
   return (
     <section id="security" className="security-section" aria-labelledby="security-heading">
       <div className="container">
-        <header className="security-head" data-reveal>
-          <span className="section-badge">
+        <header className="security-head">
+          <span className="section-badge" data-reveal>
             <SparkleIcon size={11} />
             <span>{SECURITY_CONTENT.badge}</span>
           </span>
