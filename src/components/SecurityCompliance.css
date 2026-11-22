@@ -25,34 +25,37 @@
 .security-bento {
   margin-top: clamp(32px, 4vw, 48px);
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(12px, 1.5vw, 18px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 1.8vw, 22px);
   align-items: start;
 }
 
 .sec-card {
+  position: relative;
   min-width: 0;
-  border-radius: 16px;
-  padding: clamp(18px, 1.8vw, 22px);
+  border-radius: 14px;
+  padding: clamp(20px, 2vw, 26px);
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  min-height: 332px;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 360px;
+  overflow: hidden;
   transition: transform var(--dur-mid) var(--ease-out-quint);
 }
 
 .sec-card--cream {
-  background: #FAF6EC;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FAF6EC 100%);
   color: #1E0E0A;
 }
 
 .sec-card--stone {
-  background: #EAE4DA;
+  background: linear-gradient(180deg, #EAE4DA 0%, #DFD8CA 100%);
   color: #1E0E0A;
 }
 
 .sec-card--offset {
-  margin-top: 32px;
+  margin-top: 30px;
 }
 
 .sec-card__label {
@@ -65,90 +68,52 @@
 }
 
 .sec-card__visual {
+  position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: 12px;
-  overflow: hidden;
+  height: 184px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.sec-card__visual--bleed {
+  width: calc(100% + 48px);
+  margin-inline: -24px;
+}
+
+.sec-card__visual--shield {
+  padding-inline: 12px;
+}
+
 .sec-card__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  mix-blend-mode: multiply;
+  filter: drop-shadow(0 14px 24px rgba(30, 14, 10, 0.18));
 }
 
-.sec-card__visual--ui {
-  padding: 6px;
-}
-
-/* Card 02 — crisp embedded balance card */
-.sec-balance {
-  width: 100%;
-  background: #FFFFFF;
-  border: 1px solid rgba(30, 14, 10, 0.06);
-  border-radius: 12px;
-  padding: 18px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  box-shadow: 0 10px 26px rgba(30, 14, 10, 0.06);
-}
-
-.sec-balance__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.sec-balance__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #476330;
-}
-
-.sec-balance__label {
-  font-size: 11px;
-  font-weight: 500;
-  color: #6E655C;
-}
-
-.sec-balance__value {
-  font-size: clamp(20px, 1.9vw, 24px);
-  font-weight: 700;
-  letter-spacing: -0.025em;
-  color: #1E0E0A;
-  line-height: 1.1;
-}
-
-.sec-balance__trend {
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #476330;
+.sec-card__img--contain {
+  max-height: 176px;
 }
 
 .sec-card__bottom {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   margin-top: auto;
 }
 
 .sec-card__stat {
-  font-size: clamp(24px, 2.3vw, 30px);
-  font-weight: 600;
-  letter-spacing: -0.025em;
+  font-size: clamp(28px, 2.8vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
   color: #1E0E0A;
-  line-height: 1.05;
+  line-height: 1;
 }
 
 .sec-card__caption {
-  font-size: 12.5px;
+  font-size: 13px;
   line-height: 1.4;
   color: #655C54;
 }
@@ -159,27 +124,18 @@
   }
 }
 
-@media (max-width: 960px) {
+@media (max-width: 900px) {
   .security-bento {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
+    max-width: 460px;
   }
 
   .sec-card {
-    min-height: 300px;
+    min-height: 320px;
   }
 
   .sec-card--offset {
     margin-top: 0;
-  }
-}
-
-@media (max-width: 560px) {
-  .security-bento {
-    grid-template-columns: 1fr;
-  }
-
-  .sec-card {
-    min-height: auto;
   }
 }
 

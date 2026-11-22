@@ -35,14 +35,14 @@ export const SecurityCompliance: React.FC = () => {
             style={{ '--reveal-delay': '0ms' } as React.CSSProperties}
           >
             <span className="sec-card__label">01 / TRAZABILIDAD</span>
-            <div className="sec-card__visual">
+            <div className="sec-card__visual sec-card__visual--bleed">
               <img
-                src="/images/sec-tiles.webp"
+                src="/images/sec-tiles.png"
                 alt="Mosaicos metálicos entrelazados de trazabilidad SUGEF"
                 width={1024}
-                height={1024}
+                height={600}
                 loading="eager"
-                decoding="async"
+                decoding="sync"
                 className="sec-card__img"
               />
             </div>
@@ -56,40 +56,17 @@ export const SecurityCompliance: React.FC = () => {
           <article
             className="sec-card sec-card--stone sec-card--offset"
             data-reveal
-            style={{ '--reveal-delay': '40ms' } as React.CSSProperties}
+            style={{ '--reveal-delay': '50ms' } as React.CSSProperties}
           >
-            <span className="sec-card__label">02 / LIQUIDEZ BCCR</span>
-            <div className="sec-card__visual sec-card__visual--ui">
-              <div className="sec-balance">
-                <div className="sec-balance__top">
-                  <span className="sec-balance__label">Liquidez total</span>
-                  <span className="sec-balance__dot" aria-hidden="true" />
-                </div>
-                <span className="sec-balance__value tabular-nums">₡138,450,200</span>
-                <span className="sec-balance__trend">↑ 6.4% este mes</span>
-              </div>
-            </div>
-            <div className="sec-card__bottom">
-              <span className="sec-card__stat">MONEX</span>
-              <span className="sec-card__caption">Tipo de cambio oficial BCCR</span>
-            </div>
-          </article>
-
-          {/* 03 — Cream, elevated */}
-          <article
-            className="sec-card sec-card--cream"
-            data-reveal
-            style={{ '--reveal-delay': '80ms' } as React.CSSProperties}
-          >
-            <span className="sec-card__label">03 / MULTIMONEDA</span>
-            <div className="sec-card__visual">
+            <span className="sec-card__label">02 / MULTIMONEDA</span>
+            <div className="sec-card__visual sec-card__visual--bleed">
               <img
-                src="/images/sec-coins.webp"
+                src="/images/sec-coins.png"
                 alt="Monedas en colones, dólares y euros"
                 width={1024}
-                height={1024}
+                height={600}
                 loading="eager"
-                decoding="async"
+                decoding="sync"
                 className="sec-card__img"
               />
             </div>
@@ -99,22 +76,22 @@ export const SecurityCompliance: React.FC = () => {
             </div>
           </article>
 
-          {/* 04 — Warm stone, staggered down */}
+          {/* 03 — Cream, elevated */}
           <article
-            className="sec-card sec-card--stone sec-card--offset"
+            className="sec-card sec-card--cream"
             data-reveal
-            style={{ '--reveal-delay': '120ms' } as React.CSSProperties}
+            style={{ '--reveal-delay': '100ms' } as React.CSSProperties}
           >
-            <span className="sec-card__label">04 / SEGURIDAD</span>
-            <div className="sec-card__visual">
+            <span className="sec-card__label">03 / SEGURIDAD</span>
+            <div className="sec-card__visual sec-card__visual--shield">
               <img
-                src="/images/sec-shields.webp"
+                src="/images/sec-shields.png"
                 alt="Escudos de seguridad bancaria y validación Hacienda"
-                width={1024}
-                height={1024}
+                width={900}
+                height={900}
                 loading="eager"
-                decoding="async"
-                className="sec-card__img"
+                decoding="sync"
+                className="sec-card__img sec-card__img--contain"
               />
             </div>
             <div className="sec-card__bottom">

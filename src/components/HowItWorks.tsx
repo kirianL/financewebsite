@@ -56,7 +56,7 @@ export const HowItWorks: React.FC = () => {
               width={1344}
               height={768}
               loading="eager"
-              decoding="async"
+              decoding="sync"
               className="process-visual__img"
             />
           </div>

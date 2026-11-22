@@ -51,7 +51,7 @@ export const Testimonials: React.FC = () => {
                 width={400}
                 height={400}
                 loading="eager"
-                decoding="async"
+                decoding="sync"
                 className="testimonial-feature__img"
               />
             </div>
