@@ -35,6 +35,10 @@
   pointer-events: none;
 }
 
+.process-stage__lines--mobile {
+  display: none;
+}
+
 .process-conn {
   transition: opacity var(--dur-fast) var(--ease-out);
 }
@@ -68,6 +72,23 @@
 
 .process-line__pulse--out {
   stroke: url(#koraPulseOut);
+  animation-duration: 3.6s;
+}
+
+.process-line__base--m-in {
+  stroke: url(#koraMobileBaseIn);
+}
+
+.process-line__base--m-out {
+  stroke: url(#koraMobileBaseOut);
+}
+
+.process-line__pulse--m-in {
+  stroke: url(#koraMobilePulseIn);
+}
+
+.process-line__pulse--m-out {
+  stroke: url(#koraMobilePulseOut);
   animation-duration: 3.6s;
 }
 
@@ -239,16 +260,21 @@
     min-height: 270px;
   }
 
-  .process-stage__lines {
+  .process-stage__lines--desktop {
     display: none;
   }
 
+  .process-stage__lines--mobile {
+    display: block;
+  }
+
   .process-stage__grid {
-    grid-template-columns: auto 1fr auto;
-    gap: 12px;
+    grid-template-columns: 34px 1fr 118px;
+    gap: 0;
   }
 
   .process-banks-col {
+    justify-self: start;
     padding-right: 0;
     height: 224px;
   }
@@ -258,9 +284,19 @@
     height: 34px;
   }
 
+  .process-hub__ring {
+    width: 82px;
+    height: 82px;
+  }
+
   .process-outputs-col {
+    justify-self: start;
     padding-left: 0;
     height: 176px;
+  }
+
+  .process-output-node {
+    gap: 8px;
   }
 
   .process-output-node__icon {
@@ -269,7 +305,7 @@
   }
 
   .process-output-node__label {
-    font-size: 12px;
+    font-size: 11.5px;
   }
 }
 

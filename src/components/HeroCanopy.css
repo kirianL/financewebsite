@@ -165,7 +165,7 @@
   .hero-canopy {
     min-height: 100vh;
     min-height: 100lvh;
-    min-height: calc(100lvh + env(safe-area-inset-bottom, 0px));
+    min-height: calc(100lvh + 48px);
     height: auto;
     flex-direction: column;
     align-items: stretch;
@@ -214,7 +214,7 @@
   .hero-canopy {
     min-height: 100vh;
     min-height: 100lvh;
-    min-height: calc(100lvh + env(safe-area-inset-bottom, 0px));
+    min-height: calc(100lvh + 72px);
     height: auto;
     padding-top: calc(var(--header-height) + 18px);
     padding-bottom: 0;

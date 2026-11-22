@@ -28,6 +28,21 @@ const OUTPUT_PATHS = [
   { id: 'hacienda', d: 'M 534 200 C 614 200, 636 310, 726 310' },
 ];
 
+// Mobile 350x270 coordinate space (<=540px) matching grid 34px | 1fr | 118px
+const MOBILE_INPUT_PATHS = [
+  'M 38 40 C 66 40, 76 135, 104 135',
+  'M 38 87.5 C 66 87.5, 76 135, 104 135',
+  'M 38 135 L 104 135',
+  'M 38 182.5 C 66 182.5, 76 135, 104 135',
+  'M 38 230 C 66 230, 76 135, 104 135',
+];
+
+const MOBILE_OUTPUT_PATHS = [
+  { id: 'sinpe', d: 'M 162 135 C 190 135, 200 63, 228 63' },
+  { id: 'monex', d: 'M 162 135 L 228 135' },
+  { id: 'hacienda', d: 'M 162 135 C 190 135, 200 207, 228 207' },
+];
+
 const OUTPUT_NODES = [
   {
     id: 'sinpe',
@@ -112,7 +127,7 @@ export const HowItWorks: React.FC = () => {
           aria-label="Sincronización en tiempo real de bancos de Costa Rica hacia Kora, SINPE, MONEX BCCR y Hacienda"
         >
           <svg
-            className="process-stage__lines"
+            className="process-stage__lines process-stage__lines--desktop"
             viewBox="0 0 960 400"
             preserveAspectRatio="none"
             aria-hidden="true"
@@ -209,6 +224,88 @@ export const HowItWorks: React.FC = () => {
                 </g>
               );
             })}
+          </svg>
+
+          <svg
+            className="process-stage__lines process-stage__lines--mobile"
+            viewBox="0 0 350 270"
+            preserveAspectRatio="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient
+                id="koraMobileBaseIn"
+                gradientUnits="userSpaceOnUse"
+                x1="38"
+                y1="0"
+                x2="104"
+                y2="0"
+              >
+                <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
+                <stop offset="22%" stopColor="#F5EFEB" stopOpacity="0.16" />
+                <stop offset="80%" stopColor="#F5EFEB" stopOpacity="0.16" />
+                <stop offset="100%" stopColor="#F5EFEB" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient
+                id="koraMobileBaseOut"
+                gradientUnits="userSpaceOnUse"
+                x1="162"
+                y1="0"
+                x2="228"
+                y2="0"
+              >
+                <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
+                <stop offset="20%" stopColor="#F5EFEB" stopOpacity="0.16" />
+                <stop offset="78%" stopColor="#F5EFEB" stopOpacity="0.16" />
+                <stop offset="100%" stopColor="#F5EFEB" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient
+                id="koraMobilePulseIn"
+                gradientUnits="userSpaceOnUse"
+                x1="38"
+                y1="0"
+                x2="104"
+                y2="0"
+              >
+                <stop offset="0%" stopColor="#EAE4DA" stopOpacity="0" />
+                <stop offset="35%" stopColor="#EAE4DA" stopOpacity="0.5" />
+                <stop offset="65%" stopColor="#EAE4DA" stopOpacity="0.5" />
+                <stop offset="100%" stopColor="#EAE4DA" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient
+                id="koraMobilePulseOut"
+                gradientUnits="userSpaceOnUse"
+                x1="162"
+                y1="0"
+                x2="228"
+                y2="0"
+              >
+                <stop offset="0%" stopColor="#B7CE9E" stopOpacity="0" />
+                <stop offset="35%" stopColor="#B7CE9E" stopOpacity="0.52" />
+                <stop offset="65%" stopColor="#B7CE9E" stopOpacity="0.52" />
+                <stop offset="100%" stopColor="#B7CE9E" stopOpacity="0" />
+              </linearGradient>
+            </defs>
+            {MOBILE_INPUT_PATHS.map((d, i) => (
+              <g key={`m-in-${i}`} className="process-conn">
+                <path d={d} className="process-line__base process-line__base--m-in" />
+                <path
+                  d={d}
+                  className="process-line__pulse process-line__pulse--m-in"
+                  style={{ animationDelay: `${i * -0.65}s` }}
+                />
+              </g>
+            ))}
+            {MOBILE_OUTPUT_PATHS.map((item, i) => (
+              <g key={`m-out-${item.id}`} className="process-conn">
+                <path d={item.d} className="process-line__base process-line__base--m-out" />
+                <path
+                  d={item.d}
+                  className="process-line__pulse process-line__pulse--m-out"
+                  style={{ animationDelay: `${i * -0.9}s` }}
+                />
+              </g>
+            ))}
           </svg>
 
           <div className="process-stage__grid">
