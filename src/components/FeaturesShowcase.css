@@ -55,11 +55,11 @@
 @keyframes featuresBeamsBreathe {
   0% {
     transform: scale(1.01) translate3d(0, 0, 0);
-    filter: brightness(0.98);
+    opacity: 0.92;
   }
   100% {
     transform: scale(1.035) translate3d(-0.6%, 0.4%, 0);
-    filter: brightness(1.04);
+    opacity: 1;
   }
 }
 
@@ -138,14 +138,12 @@
   align-items: stretch;
   color: var(--color-feature-card-text);
   box-shadow: 0 22px 54px rgba(0, 0, 0, 0.42);
-  transition: transform var(--dur-mid) var(--ease-out-quint),
-    box-shadow var(--dur-mid) var(--ease-out-quint);
+  transition: transform var(--dur-mid) var(--ease-out-quint);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .feature-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 28px 64px rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -485,7 +483,6 @@
   transition:
     background-color var(--dur-fast) var(--ease-out),
     border-color var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-fast) var(--ease-out),
     transform var(--dur-press) var(--ease-out);
 }
 

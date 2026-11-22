@@ -46,7 +46,6 @@
   box-shadow: 0 8px 22px rgba(0, 0, 0, 0.26);
   transition:
     transform var(--dur-fast) var(--ease-out),
-    box-shadow var(--dur-fast) var(--ease-out),
     opacity var(--dur-reveal) var(--ease-out-quint);
 }
 
@@ -81,7 +80,6 @@
 
   .integration-tile:hover {
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
     z-index: 10;
   }
 
