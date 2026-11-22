@@ -19,9 +19,7 @@ export const HeroCanopy: React.FC = () => {
             </span>
           </h1>
 
-          <p className="hero-canopy__subtitle" data-reveal-01="lines" data-delay="0.06">
-            {HERO_CONTENT.subtitle}
-          </p>
+          <p className="hero-canopy__subtitle">{HERO_CONTENT.subtitle}</p>
 
           <a href={HERO_CONTENT.ctaHref} className="hero-canopy__cta">
             <span>{HERO_CONTENT.ctaLabel}</span>

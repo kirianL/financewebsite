@@ -20,13 +20,13 @@ export const PricingSection: React.FC = () => {
   return (
     <section id="pricing" className="pricing-section" aria-labelledby="pricing-heading">
       <div className="container pricing-section__inner">
-        <div className="pricing-section__head">
-          <span className="section-badge" data-reveal>
+        <div className="pricing-section__head" data-reveal>
+          <span className="section-badge">
             <SparkleIcon size={11} />
             <span>{PRICING_CONTENT.badge}</span>
           </span>
 
-          <h2 id="pricing-heading" className="section-title-duotone" data-reveal-01="words" data-scroll>
+          <h2 id="pricing-heading" className="section-title-duotone">
             <span className="section-title-duotone__line">
               <span className="text-bright">{PRICING_CONTENT.titleStart}</span>{' '}
               <span className="text-muted">{PRICING_CONTENT.titleMuted1}</span>
@@ -37,9 +37,7 @@ export const PricingSection: React.FC = () => {
             </span>
           </h2>
 
-          <p className="section-subtitle" data-reveal-01="lines" data-scroll>
-            {PRICING_CONTENT.subtitle}
-          </p>
+          <p className="section-subtitle">{PRICING_CONTENT.subtitle}</p>
 
           <div
             className="pricing-toggle"

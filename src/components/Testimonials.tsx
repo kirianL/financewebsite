@@ -92,13 +92,13 @@ export const Testimonials: React.FC = () => {
   return (
     <section id="testimonials" className="testimonials-section" aria-labelledby="testimonials-heading">
       <div className="container testimonials-section__inner">
-        <div className="testimonials-section__head">
-          <span className="section-badge testimonials-badge" data-reveal>
+        <div className="testimonials-section__head" data-reveal>
+          <span className="section-badge testimonials-badge">
             <SparkleIcon size={11} />
             <span>{TESTIMONIALS_CONTENT.badge}</span>
           </span>
 
-          <h2 id="testimonials-heading" className="section-title-duotone testimonials-title" data-reveal-01="words" data-scroll>
+          <h2 id="testimonials-heading" className="section-title-duotone testimonials-title">
             <span className="section-title-duotone__line">
               <span className="testimonials-text-bright">{TESTIMONIALS_CONTENT.titleStart}</span>{' '}
               <span className="testimonials-text-muted">{TESTIMONIALS_CONTENT.titleMuted1}</span>
@@ -109,9 +109,7 @@ export const Testimonials: React.FC = () => {
             </span>
           </h2>
 
-          <p className="testimonials-subtitle" data-reveal-01="lines" data-scroll>
-            {TESTIMONIALS_CONTENT.subtitle}
-          </p>
+          <p className="testimonials-subtitle">{TESTIMONIALS_CONTENT.subtitle}</p>
         </div>
 
         <div className="testimonial-showcase" data-reveal style={{ '--reveal-delay': '60ms' } as React.CSSProperties}>

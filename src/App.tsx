@@ -11,7 +11,6 @@ import { PricingSection } from './components/PricingSection';
 import { FooterSynais } from './components/FooterSynais';
 import { LoginPage } from './components/LoginPage';
 import { useReveal } from './hooks/useReveal';
-import { textReveal01 } from './lib/textReveal01';
 
 function resolveRoute(): 'home' | 'login' {
   if (typeof window === 'undefined') return 'home';
@@ -28,29 +27,6 @@ export const App: React.FC = () => {
   const [pageTransition, setPageTransition] = useState<'entering' | 'idle' | 'exiting'>('idle');
 
   useReveal();
-
-  useEffect(() => {
-    if (route !== 'home') return;
-    let cancelled = false;
-    let cleanup: (() => void) | undefined;
-
-    const run = () => {
-      if (cancelled) return;
-      const scope = document.getElementById('main') ?? document;
-      cleanup = textReveal01(scope);
-    };
-
-    if (document.fonts?.ready) {
-      document.fonts.ready.then(run);
-    } else {
-      run();
-    }
-
-    return () => {
-      cancelled = true;
-      cleanup?.();
-    };
-  }, [route]);
 
   useEffect(() => {
     if (pageTransition !== 'entering') return;

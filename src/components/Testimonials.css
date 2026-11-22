@@ -174,9 +174,10 @@
 .testimonial-editorial__content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  min-height: 142px;
-  justify-content: space-between;
+  gap: 18px;
+  min-height: 168px;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .testimonial-editorial__content--next {
@@ -219,6 +220,7 @@
 }
 
 .testimonial-editorial__meta {
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -315,6 +317,10 @@
   .testimonial-editorial {
     padding: 28px 24px 32px;
     min-height: 0;
+  }
+
+  .testimonial-editorial__content {
+    min-height: 228px;
   }
 }
 

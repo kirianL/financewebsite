@@ -36,13 +36,13 @@ export const SecurityCompliance: React.FC = () => {
   return (
     <section id="security" className="security-section" aria-labelledby="security-heading">
       <div className="container">
-        <header className="security-head">
-          <span className="section-badge" data-reveal>
+        <header className="security-head" data-reveal>
+          <span className="section-badge">
             <SparkleIcon size={11} />
             <span>{SECURITY_CONTENT.badge}</span>
           </span>
 
-          <h2 id="security-heading" className="section-title-duotone security-title" data-reveal-01="words" data-scroll>
+          <h2 id="security-heading" className="section-title-duotone security-title">
             <span className="section-title-duotone__line">
               <span className="text-bright">{SECURITY_CONTENT.titleStart}</span>{' '}
               <span className="text-muted">{SECURITY_CONTENT.titleMuted1}</span>
@@ -53,9 +53,7 @@ export const SecurityCompliance: React.FC = () => {
             </span>
           </h2>
 
-          <p className="section-subtitle security-subtitle" data-reveal-01="lines" data-scroll>
-            {SECURITY_CONTENT.subtitle}
-          </p>
+          <p className="section-subtitle security-subtitle">{SECURITY_CONTENT.subtitle}</p>
         </header>
 
         <div ref={bentoRef} className="security-bento">
