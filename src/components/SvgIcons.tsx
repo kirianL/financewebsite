@@ -7,26 +7,37 @@ interface IconProps {
 
 export const CanopyMark: React.FC<IconProps> = ({ size = 20, className }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true" className={className}>
-    <circle cx="12" cy="12" r="10" fill="#3B4E2B" />
+    <rect x="2" y="2" width="20" height="20" rx="5" fill="currentColor" />
     <path
-      d="M12 6.5v11M14.7 9.2c0-1.15-1.2-1.95-2.7-1.95-1.5 0-2.6.75-2.6 1.85 0 2.15 5.4 1.35 5.4 3.7 0 1.2-1.15 2-2.8 2-1.6 0-2.75-.75-2.85-1.95"
-      stroke="#FFFFFF"
-      strokeWidth="1.65"
+      d="M12 6.5v11M6.5 12h11M8.1 8.1l7.8 7.8M15.9 8.1l-7.8 7.8"
+      stroke="#F5F3EE"
+      strokeWidth="1.9"
       strokeLinecap="round"
+      className="brand-mark__sparkle"
     />
   </svg>
 );
 
 export const HeroDollarBadgeIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg width="46" height="36" viewBox="0 0 46 36" fill="none" aria-hidden="true" className={className}>
-    <circle cx="16" cy="18" r="14" fill="#5D6455" opacity="0.55" />
-    <circle cx="28" cy="18" r="14" fill="#32382B" />
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" aria-hidden="true" className={className}>
+    {/* Back stacked coin offset down-left in solid warm dark olive */}
+    <circle cx="19.5" cy="28.5" r="17" fill="#454333" />
+    {/* Knockout separator ring in pill background color */}
+    <circle cx="26.5" cy="21.5" r="20.2" fill="var(--pill-bg, #E2DEC9)" />
+    {/* Front coin in solid warm dark olive */}
+    <circle cx="26.5" cy="21.5" r="17" fill="#454333" />
+    {/* Bold geometric Costa Rican Colón (₡) knocked out in pill background color */}
     <path
-      d="M32.2 13.8c-.85-.95-2.05-1.5-3.55-1.5-2.85 0-4.9 2.45-4.9 5.7s2.05 5.7 4.9 5.7c1.5 0 2.7-.55 3.55-1.5M23 15.8l9.8-2.2M23 21.8l9.8-2.2"
-      stroke="#FFFFFF"
-      strokeWidth="1.75"
+      d="M32.3 17.0C31.1 15.4 29.0 14.5 26.6 14.5C22.4 14.5 19.4 17.5 19.4 21.5C19.4 25.5 22.4 28.5 26.6 28.5C29.0 28.5 31.1 27.6 32.3 26.0"
+      stroke="var(--pill-bg, #E2DEC9)"
+      strokeWidth="3.4"
       strokeLinecap="round"
-      strokeLinejoin="round"
+    />
+    <path
+      d="M25.6 11.6L22.8 31.4M29.8 11.6L27.0 31.4"
+      stroke="var(--pill-bg, #E2DEC9)"
+      strokeWidth="2.2"
+      strokeLinecap="round"
     />
   </svg>
 );

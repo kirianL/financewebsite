@@ -41,6 +41,10 @@
   color: #F5EFEB;
 }
 
+.site-nav--dark .brand-mark__sparkle {
+  stroke: #050505;
+}
+
 .site-nav__pill {
   display: inline-flex;
   align-items: center;
