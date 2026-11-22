@@ -21,19 +21,25 @@ function resolveRoute(): 'home' | 'login' {
 
 export const App: React.FC = () => {
   const [route, setRoute] = useState<'home' | 'login'>(resolveRoute);
-  const [pageTransition, setPageTransition] = useState<'entering' | 'idle' | 'exiting'>('entering');
+  const [pageTransition, setPageTransition] = useState<'entering' | 'idle' | 'exiting'>('idle');
 
   useReveal();
 
   useEffect(() => {
-    const t = window.setTimeout(() => setPageTransition('idle'), 280);
+    if (pageTransition !== 'entering') return;
+    const t = window.setTimeout(() => setPageTransition('idle'), 270);
     return () => window.clearTimeout(t);
-  }, [route]);
+  }, [pageTransition]);
 
   useEffect(() => {
     const syncRoute = () => {
-      setPageTransition('entering');
-      setRoute(resolveRoute());
+      const nextRoute = resolveRoute();
+      setRoute((prevRoute) => {
+        if (nextRoute !== prevRoute) {
+          setPageTransition('entering');
+        }
+        return nextRoute;
+      });
     };
     window.addEventListener('popstate', syncRoute);
     window.addEventListener('hashchange', syncRoute);
@@ -48,13 +54,13 @@ export const App: React.FC = () => {
     setPageTransition('exiting');
     window.setTimeout(() => {
       const targetUrl = next === 'login' ? '/login' : '/';
-      if (window.location.pathname !== targetUrl) {
+      if (window.location.pathname !== targetUrl || window.location.hash) {
         window.history.pushState({}, '', targetUrl);
       }
       setRoute(next);
       setPageTransition('entering');
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
-    }, 170);
+    }, 165);
   };
 
   if (route === 'login') {
@@ -67,20 +73,22 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="app-route-shell" data-transition={pageTransition}>
+    <>
       <a href="#main" className="skip-link">
         Saltar al contenido
       </a>
       <Navbar onNavigateLogin={() => navigateTo('login')} />
-      <main id="main" tabIndex={-1}>
-        <HeroCanopy />
-        <StatsBar />
-        <FeaturesShowcase />
-        <IntegrationsGrid />
-        <PricingSection />
-        <FooterSynais />
-      </main>
-    </div>
+      <div className="app-route-shell" data-transition={pageTransition}>
+        <main id="main" tabIndex={-1}>
+          <HeroCanopy />
+          <StatsBar />
+          <FeaturesShowcase />
+          <IntegrationsGrid />
+          <PricingSection />
+          <FooterSynais />
+        </main>
+      </div>
+    </>
   );
 };
 
