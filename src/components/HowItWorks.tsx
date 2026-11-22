@@ -28,19 +28,19 @@ const OUTPUT_PATHS = [
   { id: 'hacienda', d: 'M 534 200 C 614 200, 636 310, 726 310' },
 ];
 
-// Mobile 350x270 coordinate space (<=540px) matching grid 34px | 1fr | 118px
+// Mobile 350x270 coordinate space (<=540px) with dead-center kora. at x=175
 const MOBILE_INPUT_PATHS = [
-  'M 38 40 C 66 40, 76 135, 104 135',
-  'M 38 87.5 C 66 87.5, 76 135, 104 135',
-  'M 38 135 L 104 135',
-  'M 38 182.5 C 66 182.5, 76 135, 104 135',
-  'M 38 230 C 66 230, 76 135, 104 135',
+  'M 38 40 C 86 40, 98 135, 146 135',
+  'M 38 87.5 C 86 87.5, 98 135, 146 135',
+  'M 38 135 L 146 135',
+  'M 38 182.5 C 86 182.5, 98 135, 146 135',
+  'M 38 230 C 86 230, 98 135, 146 135',
 ];
 
 const MOBILE_OUTPUT_PATHS = [
-  { id: 'sinpe', d: 'M 162 135 C 190 135, 200 63, 228 63' },
-  { id: 'monex', d: 'M 162 135 L 228 135' },
-  { id: 'hacienda', d: 'M 162 135 C 190 135, 200 207, 228 207' },
+  { id: 'sinpe', d: 'M 204 135 C 218 135, 220 63, 234 63' },
+  { id: 'monex', d: 'M 204 135 L 234 135' },
+  { id: 'hacienda', d: 'M 204 135 C 218 135, 220 207, 234 207' },
 ];
 
 const OUTPUT_NODES = [
@@ -238,7 +238,7 @@ export const HowItWorks: React.FC = () => {
                 gradientUnits="userSpaceOnUse"
                 x1="38"
                 y1="0"
-                x2="104"
+                x2="146"
                 y2="0"
               >
                 <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
@@ -249,9 +249,9 @@ export const HowItWorks: React.FC = () => {
               <linearGradient
                 id="koraMobileBaseOut"
                 gradientUnits="userSpaceOnUse"
-                x1="162"
+                x1="204"
                 y1="0"
-                x2="228"
+                x2="234"
                 y2="0"
               >
                 <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
@@ -264,7 +264,7 @@ export const HowItWorks: React.FC = () => {
                 gradientUnits="userSpaceOnUse"
                 x1="38"
                 y1="0"
-                x2="104"
+                x2="146"
                 y2="0"
               >
                 <stop offset="0%" stopColor="#EAE4DA" stopOpacity="0" />
@@ -275,9 +275,9 @@ export const HowItWorks: React.FC = () => {
               <linearGradient
                 id="koraMobilePulseOut"
                 gradientUnits="userSpaceOnUse"
-                x1="162"
+                x1="204"
                 y1="0"
-                x2="228"
+                x2="234"
                 y2="0"
               >
                 <stop offset="0%" stopColor="#B7CE9E" stopOpacity="0" />
