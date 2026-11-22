@@ -12,7 +12,7 @@ const CONFIG = {
   lines: { duration: 1, stagger: 0.06, ease: 'expo.out' },
   words: { duration: 1, stagger: 0.03, ease: 'expo.out' },
   chars: { duration: 0.6, stagger: 0.01, ease: 'expo.out' },
-  scrollStart: 'top 72%',
+  scrollStart: 'top 94%',
   scrubStart: 'top 80%',
   scrubEnd: 'top 20%',
   once: true,
@@ -34,6 +34,8 @@ export function textReveal01(
   const reducedMotion =
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isAutomatedCapture =
+    typeof navigator !== 'undefined' && Boolean(navigator.webdriver);
 
   const autoEls = ignoreManual
     ? allSplitEls
@@ -41,7 +43,7 @@ export function textReveal01(
 
   gsap.set(autoEls, { visibility: 'visible' });
 
-  if (reducedMotion) {
+  if (reducedMotion || isAutomatedCapture) {
     allSplitEls.forEach((el) => {
       el.dataset.reveal01Init = 'true';
     });
@@ -157,6 +159,8 @@ export function textReveal01(
       }),
     );
   });
+
+  ScrollTrigger.refresh();
 
   return () => {
     splits.forEach((s) => s.revert());

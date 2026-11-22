@@ -12,7 +12,10 @@ export const SecurityCompliance: React.FC = () => {
     const el = bentoRef.current;
     if (!el || revealed) return;
 
-    if (!('IntersectionObserver' in window)) {
+    const isAutomatedCapture =
+      typeof navigator !== 'undefined' && Boolean(navigator.webdriver);
+
+    if (isAutomatedCapture || !('IntersectionObserver' in window)) {
       setRevealed(true);
       return;
     }

@@ -25,7 +25,10 @@ export const StatsBar: React.FC = () => {
     const el = sectionRef.current;
     if (!el || revealed) return;
 
-    if (!('IntersectionObserver' in window)) {
+    const isAutomatedCapture =
+      typeof navigator !== 'undefined' && Boolean(navigator.webdriver);
+
+    if (isAutomatedCapture || !('IntersectionObserver' in window)) {
       setRevealed(true);
       return;
     }
