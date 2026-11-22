@@ -1,7 +1,7 @@
 .process-section {
   background-color: var(--color-platform-bg);
   color: var(--color-platform-text);
-  padding-block: clamp(48px, 6vw, 84px);
+  padding-block: clamp(52px, 6.5vw, 92px);
 }
 
 .process-section__inner {
@@ -17,347 +17,268 @@
   align-items: center;
 }
 
-.process-layout {
-  margin-top: 44px;
-  width: 100%;
-  display: grid;
-  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
-  gap: 20px;
-  align-items: stretch;
-}
-
-.process-steps {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.process-step-card {
-  width: 100%;
-  text-align: left;
-  background: #EAE4DA;
-  color: #1E0E0A;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  padding: 20px 22px;
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  flex: 1;
-  transition:
-    transform var(--dur-fast) var(--ease-out),
-    background-color var(--dur-fast) var(--ease-out),
-    border-color var(--dur-fast) var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .process-step-card:hover {
-    transform: translateY(-2px);
-    background: #F4EFE5;
-  }
-}
-
-.process-step-card:active {
-  transform: scale(0.985);
-}
-
-.process-step-card.is-active {
-  background: #FAF6EC;
-  border-color: rgba(255, 255, 255, 0.45);
-}
-
-.process-step-card__num {
-  width: 34px;
-  height: 34px;
-  border-radius: 7px;
-  background: #311916;
-  color: #F5EFEB;
-  font-size: 12px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.process-step-card__title {
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-  color: #1A0E0A;
-}
-
-.process-step-card__desc {
-  margin-top: 5px;
-  font-size: 13px;
-  line-height: 1.5;
-  color: #5E544C;
-}
-
-/* ── Minimalist Animated Banks-to-Kora Flow Stage ── */
-.process-visual {
+/* Centered, clean, borderless architectural stage directly on #311916 */
+.process-stage {
   position: relative;
+  margin-top: clamp(32px, 4vw, 48px);
+  width: 100%;
+  max-width: 860px;
   min-height: 340px;
-  border-radius: 12px;
-  overflow: hidden;
-  background-color: #130907;
-  background-image: url('/images/feature-tray-glow-bg.webp');
-  background-size: cover;
-  background-position: center;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  isolation: isolate;
 }
 
-.process-visual::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(28, 13, 10, 0.55) 0%, rgba(12, 6, 5, 0.84) 100%);
-  pointer-events: none;
-}
-
-.process-diagram__lines {
+.process-stage__lines {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  z-index: 1;
+  z-index: 0;
   pointer-events: none;
 }
 
-.process-conn {
-  transition: opacity var(--dur-mid) var(--ease-out);
-}
-
-.process-conn__base {
+.process-line__base {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.16);
-  stroke-width: 1.5;
+  stroke: rgba(255, 255, 255, 0.14);
+  stroke-width: 1.25;
   stroke-linecap: round;
 }
 
-.process-conn__pulse {
+.process-line__pulse {
   fill: none;
-  stroke: #E8CFA4;
-  stroke-width: 2;
+  stroke: #EAE4DA;
+  stroke-width: 1.75;
   stroke-linecap: round;
-  stroke-dasharray: 12 44;
-  animation: hiwFlow 1.9s linear infinite;
+  stroke-dasharray: 22 148;
+  animation: koraStream 2.2s linear infinite;
   will-change: stroke-dashoffset;
 }
 
-.process-conn__pulse--out {
-  stroke: #7CD99B;
-  animation-duration: 2.1s;
+.process-line__pulse--out {
+  stroke: #B7CE9E;
+  animation-duration: 2.4s;
 }
 
-@keyframes hiwFlow {
+@keyframes koraStream {
   to {
-    stroke-dashoffset: -56;
+    stroke-dashoffset: -170;
   }
 }
 
-.process-diagram__nodes {
+.process-stage__grid {
   position: relative;
-  z-index: 2;
-  height: 100%;
+  z-index: 1;
   min-height: 340px;
-  padding: 22px clamp(16px, 3vw, 34px);
+  padding-inline: clamp(8px, 3vw, 44px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
 }
 
-/* Pure rounded bank SVG badges — zero grey outer containers */
-.process-diagram__banks {
+/* Pure rounded bank SVG badges — zero grey outer boxes */
+.process-banks-col {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 12px;
-  height: 296px;
+  height: 288px;
 }
 
-.process-bank-node {
+.process-bank-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
-  transition:
-    opacity var(--dur-mid) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out-quint);
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.36));
+  transition: transform var(--dur-fast) var(--ease-out-quint);
 }
 
-.process-bank-node svg {
-  width: 38px;
-  height: 38px;
+.process-bank-item svg {
+  width: 42px;
+  height: 42px;
   display: block;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .process-bank-node:hover {
-    transform: scale(1.08);
+  .process-bank-item:hover {
+    transform: scale(1.07);
   }
 }
 
-/* Central Kora Hub */
+/* Minimalist Central Kora Hub */
 .process-hub {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition:
-    opacity var(--dur-mid) var(--ease-out),
-    transform var(--dur-mid) var(--ease-out-quint);
 }
 
-.process-hub__ring {
+.process-hub__halo {
   position: absolute;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  border: 1px solid rgba(232, 207, 164, 0.28);
-  animation: hubPulse 2.8s var(--ease-out) infinite;
+  width: 112px;
+  height: 112px;
+  border-radius: 28px;
+  border: 1px solid rgba(234, 228, 218, 0.24);
+  animation: koraHubBreath 3s var(--ease-out) infinite;
   pointer-events: none;
 }
 
-@keyframes hubPulse {
+@keyframes koraHubBreath {
   0% {
-    transform: scale(0.84);
-    opacity: 0.7;
+    transform: scale(0.88);
+    opacity: 0.65;
   }
   100% {
-    transform: scale(1.26);
+    transform: scale(1.22);
     opacity: 0;
   }
 }
 
-.process-hub__core {
+.process-hub__card {
   position: relative;
   z-index: 1;
-  width: 78px;
-  height: 78px;
-  border-radius: 20px;
-  background: rgba(49, 25, 22, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  width: 92px;
+  height: 92px;
+  border-radius: 22px;
+  background: #22100D;
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: #FFFFFF;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5);
+  gap: 6px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.42);
 }
 
-.process-hub__name {
-  font-size: 11px;
+.process-hub__label {
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: #F5EFEB;
 }
 
-/* Right Output Status Chips */
-.process-diagram__outputs {
+/* Clean Architectural Output Cards */
+.process-outputs-col {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 38px;
+  justify-content: space-between;
+  height: 244px;
   flex-shrink: 0;
 }
 
-.process-output-chip {
+.process-output-card {
+  min-width: 176px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #FAF6EC;
+  color: #1E0E0A;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+  transition: transform var(--dur-fast) var(--ease-out-quint);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .process-output-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.process-output-card__icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
+  background: #EAE4D7;
+  color: #311916;
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: #F5EFEB;
-  color: #2E1814;
-  font-size: 11px;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.process-output-card__text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.process-output-card__title {
+  font-size: 12.5px;
   font-weight: 600;
-  white-space: nowrap;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
-  transition:
-    opacity var(--dur-mid) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out-quint);
+  line-height: 1.2;
+  color: #181916;
 }
 
-.process-output-chip__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #23884B;
+.process-output-card__sub {
+  margin-top: 2px;
+  font-size: 10.5px;
+  line-height: 1.2;
+  color: #6B5E57;
 }
 
-/* Interactive Phase Highlighting */
-.process-visual[data-phase='link'] .process-conn--output,
-.process-visual[data-phase='link'] .process-output-chip {
-  opacity: 0.3;
-}
-
-.process-visual[data-phase='link'] .process-bank-node {
-  transform: scale(1.06);
-}
-
-.process-visual[data-phase='reconcile'] .process-bank-node {
-  opacity: 0.45;
-}
-
-.process-visual[data-phase='reconcile'] .process-conn--output:not(.process-conn--monex),
-.process-visual[data-phase='reconcile'] .process-output-chip:not(.process-output-chip--monex) {
-  opacity: 0.35;
-}
-
-.process-visual[data-phase='reconcile'] .process-hub {
-  transform: scale(1.06);
-}
-
-.process-visual[data-phase='report'] .process-bank-node,
-.process-visual[data-phase='report'] .process-conn--input {
-  opacity: 0.35;
-}
-
-.process-visual[data-phase='report'] .process-output-chip {
-  transform: scale(1.04);
-}
-
-@media (max-width: 900px) {
-  .process-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 520px) {
-  .process-diagram__nodes {
-    padding: 18px 14px;
+@media (max-width: 680px) {
+  .process-stage,
+  .process-stage__grid {
+    min-height: 300px;
   }
 
-  .process-bank-node svg {
-    width: 32px;
-    height: 32px;
+  .process-stage__grid {
+    padding-inline: 0;
+    gap: 8px;
   }
 
-  .process-hub__core {
-    width: 66px;
-    height: 66px;
-    border-radius: 16px;
+  .process-banks-col {
+    height: 260px;
   }
 
-  .process-output-chip {
-    padding: 6px 10px;
-    font-size: 10px;
+  .process-bank-item svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .process-hub__card {
+    width: 72px;
+    height: 72px;
+    border-radius: 18px;
+  }
+
+  .process-hub__halo {
+    width: 88px;
+    height: 88px;
+    border-radius: 22px;
+  }
+
+  .process-outputs-col {
+    height: 214px;
+  }
+
+  .process-output-card {
+    min-width: 138px;
+    padding: 8px 10px;
+    gap: 8px;
+  }
+
+  .process-output-card__icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .process-output-card__title {
+    font-size: 11px;
+  }
+
+  .process-output-card__sub {
+    display: none;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .process-conn__pulse,
-  .process-hub__ring {
+  .process-line__pulse,
+  .process-hub__halo {
     animation: none;
   }
 
-  .process-hub__ring {
-    opacity: 0.35;
+  .process-hub__halo {
+    opacity: 0.3;
   }
 }

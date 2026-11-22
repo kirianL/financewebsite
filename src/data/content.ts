@@ -172,13 +172,13 @@ export const PRICING_CONTENT = {
 };
 
 export const HOW_IT_WORKS_CONTENT = {
-  badge: 'PROCESO',
+  badge: 'FLUJO EN VIVO',
   titleStart: 'Conecta',
   titleMuted1: 'tu banca',
-  titleMuted2: 'en tres',
-  titleEnd: 'pasos',
+  titleMuted2: 'en tiempo',
+  titleEnd: 'real',
   subtitle:
-    'Vincula tus cuentas del BAC, BCR y Banco Nacional, concilia movimientos SINPE e IBAN y genera reportes listos para Hacienda en minutos.',
+    'Tus cuentas bancarias de Costa Rica se sincronizan automáticamente con Kora, SINPE, MONEX y Hacienda.',
   ctaLabel: 'Conectar banca CR',
   steps: [
     {

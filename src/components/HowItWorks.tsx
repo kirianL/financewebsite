@@ -1,42 +1,76 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HOW_IT_WORKS_CONTENT } from '../data/content';
 import { CanopyMark, COSTA_RICA_BANKS, IntegrationTileIcon, SparkleIcon } from './SvgIcons';
 import './HowItWorks.css';
 
-type ProcessPhase = 'all' | 'link' | 'reconcile' | 'report';
-
-const STEP_PHASES: ProcessPhase[] = ['link', 'reconcile', 'report'];
 const BANK_INDICES = [0, 1, 2, 3, 4]; // BAC, BN, BCR, BP, BCCR
-const OUTPUT_NODES = [
-  { id: 'sinpe', label: 'SINPE' },
-  { id: 'monex', label: 'MONEX BCCR' },
-  { id: 'hacienda', label: 'Hacienda' },
-];
 
 const INPUT_PATHS = [
-  'M 64 42 C 138 42, 168 170, 212 170',
-  'M 64 106 C 134 106, 168 170, 212 170',
-  'M 64 170 C 138 170, 174 170, 212 170',
-  'M 64 234 C 134 234, 168 170, 212 170',
-  'M 64 298 C 138 298, 168 170, 212 170',
+  'M 128 48 C 235 48, 290 170, 382 170',
+  'M 128 109 C 228 109, 290 170, 382 170',
+  'M 128 170 L 382 170',
+  'M 128 231 C 228 231, 290 170, 382 170',
+  'M 128 292 C 235 292, 290 170, 382 170',
 ];
 
 const OUTPUT_PATHS = [
-  { id: 'sinpe', d: 'M 268 170 C 314 170, 336 96, 384 96' },
-  { id: 'monex', d: 'M 268 170 C 314 170, 336 170, 384 170' },
-  { id: 'hacienda', d: 'M 268 170 C 314 170, 336 244, 384 244' },
+  { id: 'sinpe', d: 'M 478 170 C 568 170, 610 78, 692 78' },
+  { id: 'monex', d: 'M 478 170 L 692 170' },
+  { id: 'hacienda', d: 'M 478 170 C 568 170, 610 262, 692 262' },
+];
+
+const OUTPUT_NODES = [
+  {
+    id: 'sinpe',
+    title: 'SINPE',
+    subtitle: 'Transferencias al instante',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <path
+          d="M4.5 7.5h11m0 0L12.5 4.5m3 3l-3 3M15.5 12.5h-11m0 0l3-3m-3 3l3 3"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: 'monex',
+    title: 'MONEX BCCR',
+    subtitle: 'Tipo de cambio oficial',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.6" />
+        <path
+          d="M12.4 7.8a3.2 3.2 0 00-4.6 0 3.3 3.3 0 000 4.4 3.2 3.2 0 004.6 0M9.3 5.2l-1.2 9.6M11.7 5.2l-1.2 9.6"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
+  {
+    id: 'hacienda',
+    title: 'Hacienda',
+    subtitle: 'Comprobantes XML',
+    icon: (
+      <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="4" y="2.8" width="12" height="14.4" rx="2" stroke="currentColor" strokeWidth="1.6" />
+        <path
+          d="M7.2 7.5h5.6M7.2 10.5h5.6M7.2 13.5h3.4"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
+      </svg>
+    ),
+  },
 ];
 
 export const HowItWorks: React.FC = () => {
-  const [pinnedPhase, setPinnedPhase] = useState<ProcessPhase>('all');
-  const [hoveredPhase, setHoveredPhase] = useState<ProcessPhase | null>(null);
-
-  const activePhase = hoveredPhase ?? pinnedPhase;
-
-  const handleStepClick = (phase: ProcessPhase) => {
-    setPinnedPhase((prev) => (prev === phase ? 'all' : phase));
-  };
-
   return (
     <section id="process" className="process-section" aria-labelledby="process-heading">
       <div className="container process-section__inner">
@@ -60,112 +94,80 @@ export const HowItWorks: React.FC = () => {
           <p className="section-subtitle">{HOW_IT_WORKS_CONTENT.subtitle}</p>
         </div>
 
-        <div className="process-layout">
-          <div className="process-steps">
-            {HOW_IT_WORKS_CONTENT.steps.map((step, idx) => {
-              const phase = STEP_PHASES[idx] ?? 'all';
-              const isSelected = pinnedPhase === phase;
-              return (
-                <button
-                  key={step.number}
-                  type="button"
-                  className={`process-step-card ${isSelected ? 'is-active' : ''}`}
-                  aria-pressed={isSelected}
-                  data-reveal
-                  style={{ '--reveal-delay': `${idx * 60}ms` } as React.CSSProperties}
-                  onMouseEnter={() => setHoveredPhase(phase)}
-                  onMouseLeave={() => setHoveredPhase(null)}
-                  onFocus={() => setHoveredPhase(phase)}
-                  onBlur={() => setHoveredPhase(null)}
-                  onClick={() => handleStepClick(phase)}
-                >
-                  <span className="process-step-card__num tabular-nums">{step.number}</span>
-                  <div className="process-step-card__body">
-                    <h3 className="process-step-card__title">{step.title}</h3>
-                    <p className="process-step-card__desc">{step.description}</p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-
-          <div
-            className="process-visual"
-            data-phase={activePhase}
-            data-reveal
-            style={{ '--reveal-delay': '100ms' } as React.CSSProperties}
-            role="img"
-            aria-label="Diagrama animado de bancos de Costa Rica conectándose a Kora"
+        {/* Centered, clean, borderless architectural flow directly on #311916 */}
+        <div
+          className="process-stage"
+          data-reveal
+          style={{ '--reveal-delay': '60ms' } as React.CSSProperties}
+          role="img"
+          aria-label="Sincronización en tiempo real de bancos de Costa Rica hacia Kora, SINPE, MONEX BCCR y Hacienda"
+        >
+          <svg
+            className="process-stage__lines"
+            viewBox="0 0 860 340"
+            preserveAspectRatio="none"
+            aria-hidden="true"
           >
-            {/* Curved SVG connectors & GPU light pulses */}
-            <svg
-              className="process-diagram__lines"
-              viewBox="0 0 480 340"
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              {INPUT_PATHS.map((d, i) => (
-                <g key={i} className="process-conn process-conn--input">
-                  <path d={d} className="process-conn__base" />
-                  <path
-                    d={d}
-                    className="process-conn__pulse"
-                    style={{ animationDelay: `${i * -0.32}s` }}
-                  />
-                </g>
-              ))}
-              {OUTPUT_PATHS.map((item, i) => (
-                <g
-                  key={item.id}
-                  className={`process-conn process-conn--output process-conn--${item.id}`}
-                >
-                  <path d={item.d} className="process-conn__base" />
-                  <path
-                    d={item.d}
-                    className="process-conn__pulse process-conn__pulse--out"
-                    style={{ animationDelay: `${i * -0.45}s` }}
-                  />
-                </g>
-              ))}
-            </svg>
+            {INPUT_PATHS.map((d, i) => (
+              <g key={i}>
+                <path d={d} className="process-line__base" />
+                <path
+                  d={d}
+                  className="process-line__pulse"
+                  style={{ animationDelay: `${i * -0.38}s` }}
+                />
+              </g>
+            ))}
+            {OUTPUT_PATHS.map((item, i) => (
+              <g key={item.id}>
+                <path d={item.d} className="process-line__base" />
+                <path
+                  d={item.d}
+                  className="process-line__pulse process-line__pulse--out"
+                  style={{ animationDelay: `${i * -0.52}s` }}
+                />
+              </g>
+            ))}
+          </svg>
 
-            {/* Clean foreground nodes: pure bank SVG badges (no grey containers) -> Kora Hub -> CR outputs */}
-            <div className="process-diagram__nodes">
-              <div className="process-diagram__banks">
-                {BANK_INDICES.map((bankIdx) => {
-                  const bank = COSTA_RICA_BANKS[bankIdx];
-                  return (
-                    <div
-                      key={bankIdx}
-                      className="process-bank-node"
-                      title={bank?.fullName}
-                      aria-label={bank?.fullName}
-                    >
-                      <IntegrationTileIcon index={bankIdx} />
-                    </div>
-                  );
-                })}
-              </div>
-
-              <div className="process-hub">
-                <span className="process-hub__ring" aria-hidden="true" />
-                <div className="process-hub__core">
-                  <CanopyMark size={24} />
-                  <span className="process-hub__name">Kora</span>
-                </div>
-              </div>
-
-              <div className="process-diagram__outputs">
-                {OUTPUT_NODES.map((node) => (
+          <div className="process-stage__grid">
+            {/* Left: Pure Costa Rican Bank SVG Logos (no grey outer containers) */}
+            <div className="process-banks-col">
+              {BANK_INDICES.map((bankIdx) => {
+                const bank = COSTA_RICA_BANKS[bankIdx];
+                return (
                   <div
-                    key={node.id}
-                    className={`process-output-chip process-output-chip--${node.id}`}
+                    key={bankIdx}
+                    className="process-bank-item"
+                    title={bank?.fullName}
+                    aria-label={bank?.fullName}
                   >
-                    <span className="process-output-chip__dot" aria-hidden="true" />
-                    <span>{node.label}</span>
+                    <IntegrationTileIcon index={bankIdx} />
                   </div>
-                ))}
+                );
+              })}
+            </div>
+
+            {/* Center: Minimalist Kora Hub */}
+            <div className="process-hub">
+              <span className="process-hub__halo" aria-hidden="true" />
+              <div className="process-hub__card">
+                <CanopyMark size={26} />
+                <span className="process-hub__label">Kora</span>
               </div>
+            </div>
+
+            {/* Right: Clean Architectural Destination Nodes */}
+            <div className="process-outputs-col">
+              {OUTPUT_NODES.map((node) => (
+                <div key={node.id} className="process-output-card">
+                  <span className="process-output-card__icon">{node.icon}</span>
+                  <div className="process-output-card__text">
+                    <span className="process-output-card__title">{node.title}</span>
+                    <span className="process-output-card__sub">{node.subtitle}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
