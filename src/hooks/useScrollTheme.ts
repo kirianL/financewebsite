@@ -4,12 +4,20 @@ import { useEffect, useState } from 'react';
  * Tracks whether the viewport has scrolled past the light Canopy hero
  * into the dark Synais espresso sections, so the floating navbar adapts contrast.
  */
-export function useScrollTheme(): boolean {
+export function useScrollTheme(enabled = true): boolean {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
+    if (!enabled) {
+      setIsDark(false);
+      return;
+    }
+
     const hero = document.getElementById('hero');
-    if (!hero) return;
+    if (!hero) {
+      setIsDark(false);
+      return;
+    }
 
     const update = () => {
       const rect = hero.getBoundingClientRect();
@@ -23,7 +31,7 @@ export function useScrollTheme(): boolean {
       window.removeEventListener('scroll', update);
       window.removeEventListener('resize', update);
     };
-  }, []);
+  }, [enabled]);
 
   return isDark;
 }

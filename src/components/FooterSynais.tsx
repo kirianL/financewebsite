@@ -9,7 +9,11 @@ import {
 } from './SvgIcons';
 import './FooterSynais.css';
 
-export const FooterSynais: React.FC = () => {
+interface FooterSynaisProps {
+  onNavigateHome?: () => void;
+}
+
+export const FooterSynais: React.FC<FooterSynaisProps> = ({ onNavigateHome }) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'error' | 'success'>('idle');
 
@@ -29,7 +33,15 @@ export const FooterSynais: React.FC = () => {
       <div className="container footer-synais__inner">
         <div className="footer-synais__top">
           <div className="footer-synais__brand-col">
-            <a href="#hero" className="footer-synais__brand">
+            <a
+              href="/"
+              className="footer-synais__brand"
+              onClick={(e) => {
+                if (!onNavigateHome) return;
+                e.preventDefault();
+                onNavigateHome();
+              }}
+            >
               <SynaisBrandBadge size={20} />
               <span>{FOOTER_CONTENT.brand}</span>
             </a>

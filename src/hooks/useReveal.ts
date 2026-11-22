@@ -5,7 +5,7 @@ import { useEffect } from 'react';
  * as they enter the viewport. Respects `prefers-reduced-motion: reduce` and keeps all
  * sections visible during non-scrolling full-page automated captures (`navigator.webdriver`).
  */
-export function useReveal(): void {
+export function useReveal(key?: unknown): void {
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
     if (elements.length === 0) return;
@@ -48,5 +48,5 @@ export function useReveal(): void {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [key]);
 }

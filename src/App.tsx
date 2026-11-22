@@ -1,32 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Navbar } from './components/Navbar';
-import { HeroCanopy } from './components/HeroCanopy';
-import { StatsBar } from './components/StatsBar';
-import { FeaturesShowcase } from './components/FeaturesShowcase';
-import { HowItWorks } from './components/HowItWorks';
-import { IntegrationsGrid } from './components/IntegrationsGrid';
-import { SecurityCompliance } from './components/SecurityCompliance';
-import { Testimonials } from './components/Testimonials';
-import { PricingSection } from './components/PricingSection';
 import { FooterSynais } from './components/FooterSynais';
 import { LoginPage } from './components/LoginPage';
+import { HomePage } from './pages/HomePage';
+import { LegalPage } from './pages/LegalPage';
+import { BlogPage } from './pages/BlogPage';
 import { useReveal } from './hooks/useReveal';
-
-function resolveRoute(): 'home' | 'login' {
-  if (typeof window === 'undefined') return 'home';
-  const path = window.location.pathname.replace(/\/+$/, '');
-  const hash = window.location.hash;
-  if (path === '/login' || hash === '#/login' || hash === '#login') {
-    return 'login';
-  }
-  return 'home';
-}
+import {
+  matchHashRoute,
+  resolveRoute,
+  ROUTE_PATHS,
+  ROUTE_TITLES,
+  type Route,
+} from './routing/routes';
 
 export const App: React.FC = () => {
-  const [route, setRoute] = useState<'home' | 'login'>(resolveRoute);
+  const [route, setRoute] = useState<Route>(resolveRoute);
   const [pageTransition, setPageTransition] = useState<'entering' | 'idle' | 'exiting'>('idle');
+  const pendingSection = useRef<string | null>(null);
+  const isInitialMount = useRef(true);
 
-  useReveal();
+  useReveal(route);
+
+  useEffect(() => {
+    document.title = ROUTE_TITLES[route];
+
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
+    const section = pendingSection.current;
+    pendingSection.current = null;
+    const el = section ? document.querySelector<HTMLElement>(section) : null;
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
+    }
+    document.getElementById('main')?.focus({ preventScroll: true });
+  }, [route]);
 
   useEffect(() => {
     if (pageTransition !== 'entering') return;
@@ -37,6 +50,9 @@ export const App: React.FC = () => {
   useEffect(() => {
     const syncRoute = () => {
       const nextRoute = resolveRoute();
+      if (matchHashRoute(window.location.hash)) {
+        window.history.replaceState({}, '', ROUTE_PATHS[nextRoute]);
+      }
       setRoute((prevRoute) => {
         if (nextRoute !== prevRoute) {
           setPageTransition('entering');
@@ -52,48 +68,64 @@ export const App: React.FC = () => {
     };
   }, []);
 
-  const navigateTo = (next: 'home' | 'login') => {
-    if (next === route) return;
+  const navigateTo = (next: Route, section?: string) => {
+    if (next === route) {
+      if (section) {
+        document.querySelector(section)?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+      if (window.location.pathname !== ROUTE_PATHS[next] || window.location.hash) {
+        window.history.replaceState({}, '', ROUTE_PATHS[next]);
+      }
+      return;
+    }
+
     setPageTransition('exiting');
     window.setTimeout(() => {
-      const targetUrl = next === 'login' ? '/login' : '/';
+      pendingSection.current = section ?? null;
+      const targetUrl = ROUTE_PATHS[next];
       if (window.location.pathname !== targetUrl || window.location.hash) {
         window.history.pushState({}, '', targetUrl);
       }
       setRoute(next);
       setPageTransition('entering');
-      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
     }, 165);
   };
-
-  if (route === 'login') {
-    return (
-      <LoginPage
-        transitionState={pageTransition}
-        onNavigateHome={() => navigateTo('home')}
-      />
-    );
-  }
 
   return (
     <>
       <a href="#main" className="skip-link">
         Saltar al contenido
       </a>
-      <Navbar onNavigateLogin={() => navigateTo('login')} />
-      <div className="app-route-shell" data-transition={pageTransition}>
-        <main id="main" tabIndex={-1}>
-          <HeroCanopy />
-          <StatsBar />
-          <FeaturesShowcase />
-          <HowItWorks />
-          <IntegrationsGrid />
-          <SecurityCompliance />
-          <Testimonials />
-          <PricingSection />
-          <FooterSynais />
-        </main>
-      </div>
+      {route === 'login' ? (
+        <LoginPage
+          transitionState={pageTransition}
+          onNavigateHome={() => navigateTo('home')}
+        />
+      ) : (
+        <>
+          <Navbar
+            isHome={route === 'home'}
+            onNavigateLogin={() => navigateTo('login')}
+            onNavigateHome={() => navigateTo('home')}
+            onNavigateSection={(hash) => navigateTo('home', hash)}
+          />
+          <div className="app-route-shell" data-transition={pageTransition}>
+            {route === 'home' && <HomePage />}
+            {route === 'terms' && (
+              <LegalPage kind="terms" onNavigateHome={() => navigateTo('home')} />
+            )}
+            {route === 'privacy' && (
+              <LegalPage kind="privacy" onNavigateHome={() => navigateTo('home')} />
+            )}
+            {route === 'blog' && (
+              <BlogPage onNavigateHome={() => navigateTo('home')} />
+            )}
+            <FooterSynais onNavigateHome={() => navigateTo('home')} />
+          </div>
+        </>
+      )}
     </>
   );
 };

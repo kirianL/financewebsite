@@ -6,10 +6,18 @@ import './Navbar.css';
 
 interface NavbarProps {
   onNavigateLogin: () => void;
+  isHome?: boolean;
+  onNavigateHome?: () => void;
+  onNavigateSection?: (hash: string) => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onNavigateLogin }) => {
-  const isDark = useScrollTheme();
+export const Navbar: React.FC<NavbarProps> = ({
+  onNavigateLogin,
+  isHome = true,
+  onNavigateHome,
+  onNavigateSection,
+}) => {
+  const isDark = useScrollTheme(isHome);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const burgerRef = useRef<HTMLButtonElement>(null);
 
@@ -37,15 +45,35 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateLogin }) => {
     onNavigateLogin();
   };
 
+  const handleHomeClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!onNavigateHome) {
+      setDrawerOpen(false);
+      return;
+    }
+    e.preventDefault();
+    setDrawerOpen(false);
+    onNavigateHome();
+  };
+
+  const handleSectionClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!onNavigateSection) {
+      setDrawerOpen(false);
+      return;
+    }
+    e.preventDefault();
+    setDrawerOpen(false);
+    onNavigateSection(href);
+  };
+
   return (
     <>
       <header className={`site-nav ${isDark && !drawerOpen ? 'site-nav--dark' : ''}`}>
         <div className="site-nav__inner">
           <nav className="site-nav__pill" aria-label="Primary">
             <a
-              href="#hero"
+              href="/"
               className="site-nav__brand"
-              onClick={() => setDrawerOpen(false)}
+              onClick={handleHomeClick}
             >
               <CanopyMark size={18} />
               <span>{HERO_CONTENT.brand}</span>
@@ -54,7 +82,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateLogin }) => {
             <ul className="site-nav__links">
               {NAV_ITEMS.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="site-nav__link">
+                  <a
+                    href={item.href}
+                    className="site-nav__link"
+                    onClick={(e) => handleSectionClick(e, item.href)}
+                  >
                     {item.label}
                   </a>
                 </li>
@@ -117,7 +149,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateLogin }) => {
                   href={item.href}
                   className="nav-drawer__link"
                   tabIndex={drawerOpen ? 0 : -1}
-                  onClick={() => setDrawerOpen(false)}
+                  onClick={(e) => handleSectionClick(e, item.href)}
                 >
                   <span>{item.label}</span>
                   <span className="nav-drawer__arrow" aria-hidden="true">
@@ -144,7 +176,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigateLogin }) => {
               href="#pricing"
               className="nav-drawer__cta"
               tabIndex={drawerOpen ? 0 : -1}
-              onClick={() => setDrawerOpen(false)}
+              onClick={(e) => handleSectionClick(e, '#pricing')}
             >
               {HERO_CONTENT.ctaLabel}
             </a>

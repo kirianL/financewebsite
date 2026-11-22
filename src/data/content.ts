@@ -312,7 +312,7 @@ export const FOOTER_CONTENT = {
     {
       heading: 'Recursos',
       links: [
-        { label: 'Blog financiero CR', href: '#footer' },
+        { label: 'Blog financiero CR', href: '#blog' },
         { label: 'Guía MONEX y BCCR', href: '#footer' },
         { label: 'Casos de éxito', href: '#footer' },
         { label: 'Centro de ayuda', href: '#footer' },
