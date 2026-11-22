@@ -118,25 +118,53 @@ export const HowItWorks: React.FC = () => {
             aria-hidden="true"
           >
             <defs>
-              <linearGradient id="koraBaseLineIn" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="koraBaseLineIn"
+                gradientUnits="userSpaceOnUse"
+                x1="176"
+                y1="0"
+                x2="342"
+                y2="0"
+              >
                 <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
                 <stop offset="22%" stopColor="#F5EFEB" stopOpacity="0.14" />
                 <stop offset="80%" stopColor="#F5EFEB" stopOpacity="0.14" />
                 <stop offset="100%" stopColor="#F5EFEB" stopOpacity="0" />
               </linearGradient>
-              <linearGradient id="koraBaseLineOut" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="koraBaseLineOut"
+                gradientUnits="userSpaceOnUse"
+                x1="418"
+                y1="0"
+                x2="584"
+                y2="0"
+              >
                 <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
                 <stop offset="20%" stopColor="#F5EFEB" stopOpacity="0.14" />
                 <stop offset="78%" stopColor="#F5EFEB" stopOpacity="0.14" />
                 <stop offset="100%" stopColor="#F5EFEB" stopOpacity="0" />
               </linearGradient>
-              <linearGradient id="koraPulseIn" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="koraPulseIn"
+                gradientUnits="userSpaceOnUse"
+                x1="176"
+                y1="0"
+                x2="342"
+                y2="0"
+              >
                 <stop offset="0%" stopColor="#EAE4DA" stopOpacity="0" />
                 <stop offset="35%" stopColor="#EAE4DA" stopOpacity="0.45" />
                 <stop offset="65%" stopColor="#EAE4DA" stopOpacity="0.45" />
                 <stop offset="100%" stopColor="#EAE4DA" stopOpacity="0" />
               </linearGradient>
-              <linearGradient id="koraPulseOut" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="koraPulseOut"
+                gradientUnits="userSpaceOnUse"
+                x1="418"
+                y1="0"
+                x2="584"
+                y2="0"
+              >
                 <stop offset="0%" stopColor="#B7CE9E" stopOpacity="0" />
                 <stop offset="35%" stopColor="#B7CE9E" stopOpacity="0.48" />
                 <stop offset="65%" stopColor="#B7CE9E" stopOpacity="0.48" />
