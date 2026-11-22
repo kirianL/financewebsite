@@ -10,22 +10,23 @@ const TILE_STEP = TILE_SIZE + TILE_GAP; // 130px per testimonial step
 // Decorative side-column tiles (5 slots each) for smooth vertical parallax
 const SIDE_TILES = [0, 1, 2, 3, 4];
 
-// Minimalist SVG company marks (no grey container, integrated directly on warm tile)
-const COMPANY_LOGOS: Record<string, { name: string; svg: React.ReactNode }> = {
+// Minimalist SVG company marks (16x16 inline, no grey container)
+const COMPANY_LOGOS: Record<string, { company: string; role: string; svg: React.ReactNode }> = {
   'san-jose': {
-    name: 'Grupo Valle',
+    company: 'Grupo Valle',
+    role: 'Gerente financiera, San José',
     svg: (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
         <path
-          d="M8 12.5L20 6l12 6.5v15L20 34 8 27.5v-15z"
+          d="M4 7.5L12 3l8 4.5v9L12 21l-8-4.5v-9z"
           stroke="#311916"
-          strokeWidth="2.1"
+          strokeWidth="1.9"
           strokeLinejoin="round"
         />
         <path
-          d="M14 16.5l6 9.5 6-9.5"
+          d="M8.5 10l3.5 5.5L15.5 10"
           stroke="#46602E"
-          strokeWidth="2.3"
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -33,24 +34,26 @@ const COMPANY_LOGOS: Record<string, { name: string; svg: React.ReactNode }> = {
     ),
   },
   heredia: {
-    name: 'Nexo CR',
+    company: 'Nexo CR',
+    role: 'CFO, Heredia',
     svg: (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <circle cx="15.5" cy="20" r="8.5" stroke="#311916" strokeWidth="2.1" />
-        <circle cx="24.5" cy="20" r="8.5" stroke="#46602E" strokeWidth="2.1" />
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="9.5" cy="12" r="5.5" stroke="#311916" strokeWidth="1.9" />
+        <circle cx="14.5" cy="12" r="5.5" stroke="#46602E" strokeWidth="1.9" />
       </svg>
     ),
   },
   alajuela: {
-    name: 'TicoExport',
+    company: 'TicoExport',
+    role: 'Directora administrativa, Alajuela',
     svg: (
-      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden="true">
-        <rect x="8" y="8" width="10" height="10" rx="2.5" stroke="#311916" strokeWidth="2.1" />
-        <rect x="22" y="22" width="10" height="10" rx="2.5" stroke="#311916" strokeWidth="2.1" />
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <rect x="4" y="4" width="6.5" height="6.5" rx="1.5" stroke="#311916" strokeWidth="1.9" />
+        <rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5" stroke="#311916" strokeWidth="1.9" />
         <path
-          d="M22 13h7.5v7.5M29.5 13L18 24.5"
+          d="M13.5 7.5h5v5M18.5 7.5L11 15"
           stroke="#46602E"
-          strokeWidth="2.2"
+          strokeWidth="1.9"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -133,17 +136,23 @@ export const Testimonials: React.FC = () => {
                 <div className="testimonial-tile testimonial-tile--empty" />
                 {items.map((item, idx) => {
                   const isActive = idx === activeIdx;
-                  const logo = COMPANY_LOGOS[item.id] ?? COMPANY_LOGOS['san-jose'];
                   return (
                     <React.Fragment key={item.id}>
                       <button
                         type="button"
                         tabIndex={-1}
                         onClick={() => goTo(idx, idx > activeIdx ? 'next' : 'prev')}
-                        className={`testimonial-tile testimonial-tile--logo ${isActive ? 'is-active' : ''}`}
+                        className={`testimonial-tile testimonial-tile--portrait ${isActive ? 'is-active' : ''}`}
                       >
-                        <span className="testimonial-tile__mark">{logo.svg}</span>
-                        <span className="testimonial-tile__company">{logo.name}</span>
+                        <img
+                          src={item.image}
+                          alt={isActive ? item.author : ''}
+                          width={232}
+                          height={232}
+                          loading="eager"
+                          decoding="sync"
+                          className="testimonial-tile__img"
+                        />
                       </button>
                       <div className="testimonial-tile testimonial-tile--empty" />
                     </React.Fragment>
@@ -190,9 +199,17 @@ export const Testimonials: React.FC = () => {
 
               <div className="testimonial-editorial__meta">
                 <span className="testimonial-editorial__author">{current.author}</span>
-                <span className="testimonial-editorial__role">
-                  {current.role} · <span className="testimonial-editorial__metric">{current.metric}</span>
-                </span>
+                <div className="testimonial-editorial__company-row">
+                  <span className="testimonial-editorial__company-mark">
+                    {(COMPANY_LOGOS[current.id] ?? COMPANY_LOGOS['san-jose']).svg}
+                  </span>
+                  <span className="testimonial-editorial__company-name">
+                    {(COMPANY_LOGOS[current.id] ?? COMPANY_LOGOS['san-jose']).company}
+                  </span>
+                  <span className="testimonial-editorial__role">
+                    {(COMPANY_LOGOS[current.id] ?? COMPANY_LOGOS['san-jose']).role}
+                  </span>
+                </div>
               </div>
             </div>
 
