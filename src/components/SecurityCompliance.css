@@ -41,7 +41,9 @@
   gap: 16px;
   min-height: 360px;
   overflow: hidden;
-  transition: transform var(--dur-mid) var(--ease-out-quint);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-quint),
+    transform var(--dur-reveal) var(--ease-out-quint);
 }
 
 .sec-card--cream {

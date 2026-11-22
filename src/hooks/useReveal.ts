@@ -32,14 +32,14 @@ export function useReveal(): void {
         });
       },
       {
-        threshold: 0.08,
-        rootMargin: '0px 0px -24px 0px',
+        threshold: 0.12,
+        rootMargin: '0px 0px -72px 0px',
       }
     );
 
     elements.forEach((el) => {
       const rect = el.getBoundingClientRect();
-      if (rect.top <= vh * 0.96) {
+      if (rect.top <= vh * 0.9) {
         el.setAttribute('data-revealed', 'true');
       } else {
         el.setAttribute('data-revealed', 'false');
