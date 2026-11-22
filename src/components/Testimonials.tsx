@@ -28,12 +28,14 @@ export const Testimonials: React.FC = () => {
   const handlePrev = () => goTo(activeIdx - 1, 'prev');
   const handleNext = () => goTo(activeIdx + 1, 'next');
 
-  // Center column: 1 top spacer + N portraits + 1 bottom spacer.
+  // Center column interleaves an empty spacer tile between every portrait
+  // [empty, p0, empty, p1, empty, p2, empty] so ONLY 1 portrait is visible at rest.
   // Viewport height = 344px -> center slot top = (344 - 116) / 2 = 114px.
-  // Spacer (116px) + gap (14px) = 130px, so initial offset -16px centers item 0 at y = 114px.
-  const centerTrackY = -16 - activeIdx * TILE_STEP;
-  const leftSideTrackY = -28 - activeIdx * 42;
-  const rightSideTrackY = -64 + activeIdx * 36;
+  // p0 is at index 1 (130px), so initial offset -16px centers p0 at y = 114px;
+  // each testimonial step advances 2 tiles (2 * 130px = 260px).
+  const centerTrackY = -16 - activeIdx * (TILE_STEP * 2);
+  const leftSideTrackY = -28 - activeIdx * 48;
+  const rightSideTrackY = -64 + activeIdx * 40;
 
   return (
     <section id="testimonials" className="testimonials-section" aria-labelledby="testimonials-heading">
@@ -74,7 +76,7 @@ export const Testimonials: React.FC = () => {
                 ))}
               </div>
 
-              {/* Center portrait column */}
+              {/* Center portrait column: 1 empty tile between each portrait */}
               <div
                 className="testimonial-grid-col testimonial-grid-col--center"
                 style={{ transform: `translateY(${centerTrackY}px)` }}
@@ -83,26 +85,27 @@ export const Testimonials: React.FC = () => {
                 {items.map((item, idx) => {
                   const isActive = idx === activeIdx;
                   return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      tabIndex={-1}
-                      onClick={() => goTo(idx, idx > activeIdx ? 'next' : 'prev')}
-                      className={`testimonial-tile testimonial-tile--portrait ${isActive ? 'is-active' : ''}`}
-                    >
-                      <img
-                        src={item.image}
-                        alt=""
-                        width={232}
-                        height={232}
-                        loading="eager"
-                        decoding="async"
-                        className="testimonial-tile__img"
-                      />
-                    </button>
+                    <React.Fragment key={item.id}>
+                      <button
+                        type="button"
+                        tabIndex={-1}
+                        onClick={() => goTo(idx, idx > activeIdx ? 'next' : 'prev')}
+                        className={`testimonial-tile testimonial-tile--portrait ${isActive ? 'is-active' : ''}`}
+                      >
+                        <img
+                          src={item.image}
+                          alt={isActive ? item.author : ''}
+                          width={232}
+                          height={232}
+                          loading="eager"
+                          decoding="sync"
+                          className="testimonial-tile__img"
+                        />
+                      </button>
+                      <div className="testimonial-tile testimonial-tile--empty" />
+                    </React.Fragment>
                   );
                 })}
-                <div className="testimonial-tile testimonial-tile--empty" />
               </div>
 
               {/* Right decorative column */}
