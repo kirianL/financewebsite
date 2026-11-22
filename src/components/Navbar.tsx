@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { HERO_CONTENT, NAV_ITEMS } from '../data/content';
 import { useScrollTheme } from '../hooks/useScrollTheme';
-import { LoginModal } from './LoginModal';
 import { CanopyMark } from './SvgIcons';
 import './Navbar.css';
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  onNavigateLogin: () => void;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ onNavigateLogin }) => {
   const isDark = useScrollTheme();
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
   const burgerRef = useRef<HTMLButtonElement>(null);
-  const loginTriggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!drawerOpen) return;
@@ -29,6 +30,12 @@ export const Navbar: React.FC = () => {
       window.removeEventListener('keydown', onKey);
     };
   }, [drawerOpen]);
+
+  const handleLoginClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setDrawerOpen(false);
+    onNavigateLogin();
+  };
 
   return (
     <>
@@ -56,23 +63,19 @@ export const Navbar: React.FC = () => {
           </nav>
 
           <div className="site-nav__actions">
-            <button
-              ref={loginTriggerRef}
-              type="button"
+            <a
+              href="/login"
               className="site-nav__login"
-              onClick={() => {
-                setDrawerOpen(false);
-                setLoginOpen(true);
-              }}
+              onClick={handleLoginClick}
             >
               Ingresar
-            </button>
+            </a>
             <button
               ref={burgerRef}
               type="button"
               className="site-nav__burger"
               data-open={drawerOpen}
-              aria-label={drawerOpen ? 'Close menu' : 'Open menu'}
+              aria-label={drawerOpen ? 'Cerrar menú' : 'Abrir menú'}
               aria-expanded={drawerOpen}
               aria-controls="mobile-nav-drawer"
               onClick={() => setDrawerOpen((prev) => !prev)}
@@ -95,7 +98,7 @@ export const Navbar: React.FC = () => {
         role="dialog"
         aria-modal="true"
         aria-hidden={!drawerOpen}
-        aria-label="Navigation menu"
+        aria-label="Menú de navegación"
       >
         <div
           className="nav-drawer__backdrop"
@@ -129,17 +132,14 @@ export const Navbar: React.FC = () => {
             className="nav-drawer__footer"
             style={{ '--i': NAV_ITEMS.length } as React.CSSProperties}
           >
-            <button
-              type="button"
+            <a
+              href="/login"
               className="nav-drawer__login-btn"
               tabIndex={drawerOpen ? 0 : -1}
-              onClick={() => {
-                setDrawerOpen(false);
-                setLoginOpen(true);
-              }}
+              onClick={handleLoginClick}
             >
               Ingresar a {HERO_CONTENT.brand}
-            </button>
+            </a>
             <a
               href="#pricing"
               className="nav-drawer__cta"
@@ -151,14 +151,6 @@ export const Navbar: React.FC = () => {
           </div>
         </div>
       </div>
-
-      <LoginModal
-        isOpen={loginOpen}
-        onClose={() => {
-          setLoginOpen(false);
-          loginTriggerRef.current?.focus();
-        }}
-      />
     </>
   );
 };
