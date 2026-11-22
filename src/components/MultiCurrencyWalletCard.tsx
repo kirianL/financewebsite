@@ -18,7 +18,7 @@ const WALLET_CURRENCIES: WalletOption[] = [
     amount: '₡138,450,200',
     totalEquiv: '₡138,450,200',
     trend: '6.4% vs. mes anterior',
-    status: 'SINPE Activo',
+    status: 'Activa',
   },
   {
     code: 'USD',
@@ -26,7 +26,7 @@ const WALLET_CURRENCIES: WalletOption[] = [
     amount: '$263,724.32',
     totalEquiv: '$263,724.32',
     trend: '5.0% vs. mes anterior',
-    status: 'MONEX Activo',
+    status: 'Activa',
   },
   {
     code: 'EUR',
@@ -34,7 +34,7 @@ const WALLET_CURRENCIES: WalletOption[] = [
     amount: '€ 63,275.45',
     totalEquiv: '€ 242,626.37',
     trend: '4.8% vs. mes anterior',
-    status: 'IBAN Activo',
+    status: 'Activa',
   },
   {
     code: 'USDC',
@@ -42,7 +42,7 @@ const WALLET_CURRENCIES: WalletOption[] = [
     amount: '$ 48,920.00',
     totalEquiv: '$ 263,724.32',
     trend: '5.2% vs. mes anterior',
-    status: 'Onchain CR',
+    status: 'Activa',
   },
 ];
 

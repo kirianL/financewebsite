@@ -21,11 +21,20 @@ function resolveRoute(): 'home' | 'login' {
 
 export const App: React.FC = () => {
   const [route, setRoute] = useState<'home' | 'login'>(resolveRoute);
+  const [pageTransition, setPageTransition] = useState<'entering' | 'idle' | 'exiting'>('entering');
 
   useReveal();
 
   useEffect(() => {
-    const syncRoute = () => setRoute(resolveRoute());
+    const t = window.setTimeout(() => setPageTransition('idle'), 280);
+    return () => window.clearTimeout(t);
+  }, [route]);
+
+  useEffect(() => {
+    const syncRoute = () => {
+      setPageTransition('entering');
+      setRoute(resolveRoute());
+    };
     window.addEventListener('popstate', syncRoute);
     window.addEventListener('hashchange', syncRoute);
     return () => {
@@ -35,20 +44,30 @@ export const App: React.FC = () => {
   }, []);
 
   const navigateTo = (next: 'home' | 'login') => {
-    const targetUrl = next === 'login' ? '/login' : '/';
-    if (window.location.pathname !== targetUrl) {
-      window.history.pushState({}, '', targetUrl);
-    }
-    setRoute(next);
-    window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    if (next === route) return;
+    setPageTransition('exiting');
+    window.setTimeout(() => {
+      const targetUrl = next === 'login' ? '/login' : '/';
+      if (window.location.pathname !== targetUrl) {
+        window.history.pushState({}, '', targetUrl);
+      }
+      setRoute(next);
+      setPageTransition('entering');
+      window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior });
+    }, 170);
   };
 
   if (route === 'login') {
-    return <LoginPage onNavigateHome={() => navigateTo('home')} />;
+    return (
+      <LoginPage
+        transitionState={pageTransition}
+        onNavigateHome={() => navigateTo('home')}
+      />
+    );
   }
 
   return (
-    <>
+    <div className="app-route-shell" data-transition={pageTransition}>
       <a href="#main" className="skip-link">
         Saltar al contenido
       </a>
@@ -61,7 +80,7 @@ export const App: React.FC = () => {
         <PricingSection />
         <FooterSynais />
       </main>
-    </>
+    </div>
   );
 };
 

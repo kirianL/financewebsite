@@ -76,10 +76,10 @@ export const WALLET_DATA = {
   walletsHeading: 'Cuentas y Divisas',
   seeAllLabel: 'Ver todas',
   currencies: [
-    { code: 'CRC', amount: '₡138,450,200', status: 'SINPE Activo' },
-    { code: 'USD', amount: '$263,724.32', status: 'MONEX Activo' },
-    { code: 'EUR', amount: '€ 63,275.45', status: 'IBAN Activo' },
-    { code: 'USDC', amount: '$ 48,920.00', status: 'Onchain CR' },
+    { code: 'CRC', amount: '₡138,450,200', status: 'Activa' },
+    { code: 'USD', amount: '$263,724.32', status: 'Activa' },
+    { code: 'EUR', amount: '€ 63,275.45', status: 'Activa' },
+    { code: 'USDC', amount: '$ 48,920.00', status: 'Activa' },
   ] as WalletCurrency[],
 };
 

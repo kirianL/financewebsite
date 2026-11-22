@@ -23,9 +23,6 @@ export const HeroCanopy: React.FC = () => {
 
           <a href={HERO_CONTENT.ctaHref} className="hero-canopy__cta">
             <span>{HERO_CONTENT.ctaLabel}</span>
-            <span className="hero-canopy__cta-crc" aria-hidden="true">
-              ₡1 : 1
-            </span>
           </a>
         </div>
       </div>
