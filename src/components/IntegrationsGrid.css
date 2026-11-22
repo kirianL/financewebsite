@@ -88,6 +88,14 @@
   .integration-tile:hover .integration-tile__tooltip {
     opacity: 1;
     transform: translateX(-50%) scale(1) translateY(0);
+    transition-delay: 110ms;
+  }
+
+  /* Emil Kowalski skip-delay pattern: subsequent tooltips open with 0ms delay & 0ms duration */
+  .integrations-grid[data-instant="true"] .integration-tile__tooltip,
+  .integrations-grid[data-instant="true"] .integration-tile:hover .integration-tile__tooltip {
+    transition-duration: 0ms;
+    transition-delay: 0ms;
   }
 }
 

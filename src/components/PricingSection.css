@@ -194,8 +194,14 @@
     transform var(--dur-fast) var(--ease-out);
 }
 
-.price-card__cta:hover {
-  background: #E2DCD0;
+@media (hover: hover) and (pointer: fine) {
+  .price-card__cta:hover {
+    background: #E2DCD0;
+  }
+
+  .price-card__cta--pro:hover {
+    background: #3D1F1B;
+  }
 }
 
 .price-card__cta:active {
@@ -205,10 +211,6 @@
 .price-card__cta--pro {
   background: var(--color-price-cta-pro);
   color: #FFFFFF;
-}
-
-.price-card__cta--pro:hover {
-  background: #3D1F1B;
 }
 
 .price-card__bottom {

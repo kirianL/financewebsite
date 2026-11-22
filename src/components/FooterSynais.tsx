@@ -55,31 +55,62 @@ export const FooterSynais: React.FC = () => {
             <h3 className="footer-synais__newsletter-title">{FOOTER_CONTENT.newsletterTitle}</h3>
             <form onSubmit={handleSubmit} noValidate className="footer-synais__form">
               <label htmlFor="footer-email" className="sr-only">
-                Email address
+                Correo electrónico
               </label>
-              <input
-                id="footer-email"
-                type="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (status !== 'idle') setStatus('idle');
-                }}
-                placeholder={FOOTER_CONTENT.newsletterPlaceholder}
-                className="footer-synais__input"
-              />
+              <div className="footer-synais__input-group">
+                <input
+                  id="footer-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (status !== 'idle') setStatus('idle');
+                  }}
+                  placeholder={FOOTER_CONTENT.newsletterPlaceholder}
+                  className={`footer-synais__input ${status === 'error' ? 'is-error' : ''}`}
+                />
+                <button
+                  type="submit"
+                  className={`footer-synais__submit ${status === 'success' ? 'is-success' : ''}`}
+                  aria-label="Suscribirse al boletín"
+                >
+                  {status === 'success' ? (
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path
+                        d="M3.5 8.3l2.8 2.8 6.2-6.2"
+                        stroke="currentColor"
+                        strokeWidth="1.9"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  ) : (
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                      <path
+                        d="M3.5 8h9M8.75 4.25L12.5 8l-3.75 3.75"
+                        stroke="currentColor"
+                        strokeWidth="1.7"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
+                </button>
+              </div>
             </form>
             <p className="footer-synais__helper">{FOOTER_CONTENT.newsletterHelper}</p>
-            {status === 'error' && (
-              <p className="footer-synais__feedback is-error" role="alert">
-                Por favor ingresa un correo electrónico válido.
-              </p>
-            )}
-            {status === 'success' && (
-              <p className="footer-synais__feedback is-success" role="status">
-                Suscrito a las actualizaciones de Kora CR.
-              </p>
-            )}
+            <div className="footer-synais__feedback-slot" aria-live="polite">
+              {status === 'error' && (
+                <p className="footer-synais__feedback is-error" role="alert">
+                  Por favor ingresa un correo electrónico válido.
+                </p>
+              )}
+              {status === 'success' && (
+                <p className="footer-synais__feedback is-success" role="status">
+                  Suscrito a las actualizaciones de Kora CR.
+                </p>
+              )}
+            </div>
           </div>
         </div>
 

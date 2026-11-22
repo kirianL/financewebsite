@@ -367,17 +367,15 @@
   color: #9E2A1C;
   font-size: 10.5px;
   font-weight: 600;
-  animation: pillPop 180ms var(--ease-out) both;
-}
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 150ms var(--ease-out),
+    transform 150ms var(--ease-out);
 
-@keyframes pillPop {
-  from {
+  @starting-style {
     opacity: 0;
-    transform: scale(0.92);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
+    transform: scale(0.94);
   }
 }
 
@@ -576,19 +574,18 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  animation: verifyEnter 240ms var(--ease-out-quint) both;
-}
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0px);
+  transition:
+    opacity 220ms var(--ease-out-quint),
+    transform 220ms var(--ease-out-quint),
+    filter 180ms var(--ease-out);
 
-@keyframes verifyEnter {
-  from {
+  @starting-style {
     opacity: 0;
     transform: scale(0.96) translateY(6px);
-    filter: blur(3px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-    filter: blur(0px);
+    filter: blur(2px);
   }
 }
 
@@ -744,7 +741,17 @@
 }
 
 .login-submit-cta--verified {
-  animation: verifyEnter 200ms var(--ease-out-quint) both;
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    opacity 180ms var(--ease-out-quint),
+    transform var(--dur-press) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out);
+
+  @starting-style {
+    opacity: 0;
+    transform: scale(0.96);
+  }
 }
 
 .login-security-note {

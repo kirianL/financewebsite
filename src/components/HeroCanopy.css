@@ -64,12 +64,6 @@
     background-color var(--dur-fast) var(--ease-out);
 }
 
-.hero-canopy__pill:hover {
-  --pill-bg: #DBD6BE;
-  background: var(--pill-bg);
-  transform: translateY(-1px);
-}
-
 .hero-canopy__pill-icon {
   flex-shrink: 0;
   width: 0.88em;
@@ -78,8 +72,20 @@
   transition: transform var(--dur-fast) var(--ease-out);
 }
 
-.hero-canopy__pill:hover .hero-canopy__pill-icon {
-  transform: translateY(0.06em) scale(1.04);
+@media (hover: hover) and (pointer: fine) {
+  .hero-canopy__pill:hover {
+    --pill-bg: #DBD6BE;
+    background: var(--pill-bg);
+    transform: translateY(-1px);
+  }
+
+  .hero-canopy__pill:hover .hero-canopy__pill-icon {
+    transform: translateY(0.06em) scale(1.04);
+  }
+
+  .hero-canopy__cta:hover {
+    background: var(--color-hero-cta-hover);
+  }
 }
 
 .hero-canopy__subtitle {
@@ -124,10 +130,6 @@
 .hero-canopy__cta:hover .hero-canopy__cta-crc {
   background: rgba(255, 255, 255, 0.22);
   transform: translateX(1px);
-}
-
-.hero-canopy__cta:hover {
-  background: var(--color-hero-cta-hover);
 }
 
 .hero-canopy__cta:active {

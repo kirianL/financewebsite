@@ -65,16 +65,27 @@
   margin-top: 10px;
 }
 
+.footer-synais__input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .footer-synais__input {
   width: 100%;
   height: 40px;
-  padding-inline: 14px;
+  padding-left: 14px;
+  padding-right: 42px;
   border-radius: 5px;
   background: var(--color-footer-input-bg);
   border: 1px solid var(--color-footer-input-border);
   color: #FFFFFF;
   font-size: 16px;
   transition: border-color var(--dur-fast) var(--ease-out);
+}
+
+.footer-synais__input.is-error {
+  border-color: rgba(248, 113, 113, 0.65);
 }
 
 .footer-synais__input::placeholder {
@@ -87,6 +98,39 @@
   border-color: rgba(255, 255, 255, 0.42);
 }
 
+.footer-synais__submit {
+  position: absolute;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #EAE5DC;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-press) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .footer-synais__submit:hover {
+    background: rgba(255, 255, 255, 0.16);
+    color: #FFFFFF;
+  }
+}
+
+.footer-synais__submit:active {
+  transform: scale(0.95);
+}
+
+.footer-synais__submit.is-success {
+  background: #23884B;
+  color: #FFFFFF;
+}
+
 .footer-synais__helper {
   margin-top: 8px;
   font-size: 11.5px;
@@ -94,9 +138,23 @@
   color: #71717A;
 }
 
+.footer-synais__feedback-slot {
+  min-height: 18px;
+  margin-top: 4px;
+}
+
 .footer-synais__feedback {
-  margin-top: 6px;
   font-size: 12px;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
 }
 
 .footer-synais__feedback.is-error {

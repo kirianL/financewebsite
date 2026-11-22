@@ -62,7 +62,7 @@ h1, h2 {
 
 .skip-link {
   position: absolute;
-  top: -100px;
+  top: 16px;
   left: 16px;
   z-index: 200;
   padding: 10px 16px;
@@ -71,11 +71,12 @@ h1, h2 {
   color: #FFFFFF;
   font-size: 14px;
   font-weight: 600;
-  transition: top var(--dur-fast) var(--ease-out);
+  transform: translateY(-150%);
+  transition: transform var(--dur-fast) var(--ease-out);
 }
 
 .skip-link:focus {
-  top: 16px;
+  transform: translateY(0);
 }
 
 .container {
@@ -108,14 +109,12 @@ h1, h2 {
   html {
     scroll-behavior: auto;
   }
-  [data-reveal],
-  [data-reveal][data-revealed="false"] {
-    opacity: 1 !important;
+  [data-reveal] {
     transform: none !important;
-    transition: none !important;
+    transition: opacity 200ms ease !important;
   }
-  *, *::before, *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+  [data-reveal][data-revealed="false"] {
+    opacity: 0;
+    transform: none !important;
   }
 }

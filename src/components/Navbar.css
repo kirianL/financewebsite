@@ -60,6 +60,11 @@
   font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.01em;
+  transition: transform var(--dur-press) var(--ease-out);
+}
+
+.site-nav__brand:active {
+  transform: scale(0.97);
 }
 
 .site-nav__links {
@@ -273,7 +278,13 @@
   font-weight: 500;
   letter-spacing: -0.02em;
   border-bottom: 1px solid rgba(24, 25, 22, 0.08);
-  transition: color var(--dur-fast) var(--ease-out);
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-press) var(--ease-out);
+}
+
+.nav-drawer__link:active {
+  transform: scale(0.98);
 }
 
 .nav-drawer__arrow {
@@ -284,9 +295,11 @@
     opacity var(--dur-fast) var(--ease-out);
 }
 
-.nav-drawer__link:hover .nav-drawer__arrow {
-  opacity: 0.9;
-  transform: translateX(3px);
+@media (hover: hover) and (pointer: fine) {
+  .nav-drawer__link:hover .nav-drawer__arrow {
+    opacity: 0.9;
+    transform: translateX(3px);
+  }
 }
 
 .nav-drawer__footer {
