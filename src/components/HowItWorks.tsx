@@ -5,18 +5,22 @@ import './HowItWorks.css';
 
 const BANK_INDICES = [0, 1, 2, 3, 4]; // BAC, BN, BCR, BP, BCCR
 
+// Exact coordinates in 860x340 viewBox:
+// Left bank column right edge = 216
+// Center Kora hub = 382..478 (dead center x = 430, y = 170)
+// Right destination cards left edge = 644
 const INPUT_PATHS = [
-  'M 128 48 C 235 48, 290 170, 382 170',
-  'M 128 109 C 228 109, 290 170, 382 170',
-  'M 128 170 L 382 170',
-  'M 128 231 C 228 231, 290 170, 382 170',
-  'M 128 292 C 235 292, 290 170, 382 170',
+  'M 216 48 C 296 48, 318 170, 382 170',
+  'M 216 109 C 292 109, 318 170, 382 170',
+  'M 216 170 L 382 170',
+  'M 216 231 C 292 231, 318 170, 382 170',
+  'M 216 292 C 296 292, 318 170, 382 170',
 ];
 
 const OUTPUT_PATHS = [
-  { id: 'sinpe', d: 'M 478 170 C 568 170, 610 78, 692 78' },
-  { id: 'monex', d: 'M 478 170 L 692 170' },
-  { id: 'hacienda', d: 'M 478 170 C 568 170, 610 262, 692 262' },
+  { id: 'sinpe', d: 'M 478 170 C 542 170, 564 74, 644 74' },
+  { id: 'monex', d: 'M 478 170 L 644 170' },
+  { id: 'hacienda', d: 'M 478 170 C 542 170, 564 266, 644 266' },
 ];
 
 const OUTPUT_NODES = [
@@ -24,6 +28,7 @@ const OUTPUT_NODES = [
     id: 'sinpe',
     title: 'SINPE',
     subtitle: 'Transferencias al instante',
+    tag: '₡ / $',
     icon: (
       <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <path
@@ -40,6 +45,7 @@ const OUTPUT_NODES = [
     id: 'monex',
     title: 'MONEX BCCR',
     subtitle: 'Tipo de cambio oficial',
+    tag: '₡512.40',
     icon: (
       <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <circle cx="10" cy="10" r="7.5" stroke="currentColor" strokeWidth="1.6" />
@@ -56,6 +62,7 @@ const OUTPUT_NODES = [
     id: 'hacienda',
     title: 'Hacienda',
     subtitle: 'Comprobantes XML',
+    tag: 'v4.4',
     icon: (
       <svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true">
         <rect x="4" y="2.8" width="12" height="14.4" rx="2" stroke="currentColor" strokeWidth="1.6" />
@@ -94,7 +101,7 @@ export const HowItWorks: React.FC = () => {
           <p className="section-subtitle">{HOW_IT_WORKS_CONTENT.subtitle}</p>
         </div>
 
-        {/* Centered, clean, borderless architectural flow directly on #311916 */}
+        {/* Perfectly symmetrical 3-column architectural flow centered under headline */}
         <div
           className="process-stage"
           data-reveal
@@ -131,7 +138,7 @@ export const HowItWorks: React.FC = () => {
           </svg>
 
           <div className="process-stage__grid">
-            {/* Left: Pure Costa Rican Bank SVG Logos (no grey outer containers) */}
+            {/* Left Column: Pure Costa Rican Bank SVG Logos */}
             <div className="process-banks-col">
               {BANK_INDICES.map((bankIdx) => {
                 const bank = COSTA_RICA_BANKS[bankIdx];
@@ -148,16 +155,16 @@ export const HowItWorks: React.FC = () => {
               })}
             </div>
 
-            {/* Center: Minimalist Kora Hub */}
+            {/* Center Column: Dead-Center Kora Hub */}
             <div className="process-hub">
               <span className="process-hub__halo" aria-hidden="true" />
               <div className="process-hub__card">
-                <CanopyMark size={26} />
+                <CanopyMark size={28} />
                 <span className="process-hub__label">Kora</span>
               </div>
             </div>
 
-            {/* Right: Clean Architectural Destination Nodes */}
+            {/* Right Column: Architectural Dark-Glass Destination Modules */}
             <div className="process-outputs-col">
               {OUTPUT_NODES.map((node) => (
                 <div key={node.id} className="process-output-card">
@@ -166,6 +173,7 @@ export const HowItWorks: React.FC = () => {
                     <span className="process-output-card__title">{node.title}</span>
                     <span className="process-output-card__sub">{node.subtitle}</span>
                   </div>
+                  <span className="process-output-card__tag tabular-nums">{node.tag}</span>
                 </div>
               ))}
             </div>
