@@ -63,7 +63,7 @@ export const SecurityCompliance: React.FC = () => {
             data-reveal
             style={{ '--reveal-delay': '0ms' } as React.CSSProperties}
           >
-            <span className="sec-card__label">01 / TRAZABILIDAD</span>
+            <span className="sec-card__label">Trazabilidad</span>
             <div className="sec-card__visual sec-card__visual--bleed">
               <img
                 src="/images/sec-tiles.png"
@@ -94,7 +94,7 @@ export const SecurityCompliance: React.FC = () => {
             data-reveal
             style={{ '--reveal-delay': '50ms' } as React.CSSProperties}
           >
-            <span className="sec-card__label">02 / MULTIMONEDA</span>
+            <span className="sec-card__label">Multimoneda</span>
             <div className="sec-card__visual sec-card__visual--bleed">
               <img
                 src="/images/sec-coins.png"
@@ -126,7 +126,7 @@ export const SecurityCompliance: React.FC = () => {
             data-reveal
             style={{ '--reveal-delay': '100ms' } as React.CSSProperties}
           >
-            <span className="sec-card__label">03 / SEGURIDAD</span>
+            <span className="sec-card__label">Seguridad</span>
             <div className="sec-card__visual sec-card__visual--shield">
               <img
                 src="/images/sec-shields.png"
