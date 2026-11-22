@@ -44,9 +44,6 @@ export const LegalPage: React.FC<LegalPageProps> = ({ kind, onNavigateHome }) =>
           <p className="subpage-subtitle">{content.subtitle}</p>
           <div className="subpage-meta">
             <span>{content.updatedAt}</span>
-            <span className="subpage-meta__sep" aria-hidden="true">
-              ·
-            </span>
             <span>{content.entity}</span>
           </div>
         </header>

@@ -4,7 +4,6 @@ import { FooterSynais } from './components/FooterSynais';
 import { LoginPage } from './components/LoginPage';
 import { HomePage } from './pages/HomePage';
 import { LegalPage } from './pages/LegalPage';
-import { BlogPage } from './pages/BlogPage';
 import { useReveal } from './hooks/useReveal';
 import {
   matchHashRoute,
@@ -118,9 +117,6 @@ export const App: React.FC = () => {
             )}
             {route === 'privacy' && (
               <LegalPage kind="privacy" onNavigateHome={() => navigateTo('home')} />
-            )}
-            {route === 'blog' && (
-              <BlogPage onNavigateHome={() => navigateTo('home')} />
             )}
             <FooterSynais
               onNavigateHome={() => navigateTo('home')}

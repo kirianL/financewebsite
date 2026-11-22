@@ -248,7 +248,7 @@ export const TESTIMONIALS_CONTENT = {
       quote:
         'Pasamos de conciliar en hojas de cálculo a tener el flujo de caja del día en Kora. El cierre fiscal con Hacienda nos tomó la mitad del tiempo.',
       author: 'María Fernández',
-      role: 'Gerente financiera · Distribuidora en San José',
+      role: 'Gerente financiera, Distribuidora en San José',
       metric: '-52% tiempo de cierre',
       image: '/images/testimonial-1.webp',
     },
@@ -257,7 +257,7 @@ export const TESTIMONIALS_CONTENT = {
       quote:
         'El tipo de cambio MONEX en tiempo real nos evitó errores en pagos a proveedores en dólares. Cada movimiento SINPE e IBAN queda listo para auditoría SUGEF.',
       author: 'Carlos Jiménez',
-      role: 'CFO · Empresa de servicios en Heredia',
+      role: 'CFO, Empresa de servicios en Heredia',
       metric: '100% conciliación diaria',
       image: '/images/testimonial-2.webp',
     },
@@ -266,7 +266,7 @@ export const TESTIMONIALS_CONTENT = {
       quote:
         'Conectar BAC, BCR y BN en un solo panel nos dio visibilidad real de nuestra liquidez en colones y euros. El equipo financiero ahorra horas cada semana.',
       author: 'Ana Rodríguez',
-      role: 'Directora administrativa · Pyme exportadora en Alajuela',
+      role: 'Directora administrativa, Pyme exportadora en Alajuela',
       metric: '4 bancos centralizados',
       image: '/images/testimonial-3.webp',
     },
@@ -312,7 +312,7 @@ export const FOOTER_CONTENT = {
     {
       heading: 'Recursos',
       links: [
-        { label: 'Blog financiero CR', href: '#blog' },
+        { label: 'Blog financiero CR', href: '#footer' },
         { label: 'Guía MONEX y BCCR', href: '#footer' },
         { label: 'Casos de éxito', href: '#footer' },
         { label: 'Centro de ayuda', href: '#footer' },

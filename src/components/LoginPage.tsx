@@ -541,7 +541,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
                   strokeLinecap="round"
                 />
               </svg>
-              <span>Protegido bajo estándares SUGEF y BCCR · Cifrado TLS 1.3</span>
+              <span>Protegido bajo estándares SUGEF y BCCR con cifrado TLS 1.3</span>
             </div>
           </section>
 

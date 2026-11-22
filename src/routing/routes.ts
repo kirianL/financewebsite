@@ -1,11 +1,10 @@
-export type Route = 'home' | 'login' | 'terms' | 'privacy' | 'blog';
+export type Route = 'home' | 'login' | 'terms' | 'privacy';
 
 export const ROUTE_PATHS: Record<Route, string> = {
   home: '/',
   login: '/login',
   terms: '/terminos',
   privacy: '/privacidad',
-  blog: '/blog',
 };
 
 export const ROUTE_TITLES: Record<Route, string> = {
@@ -13,7 +12,6 @@ export const ROUTE_TITLES: Record<Route, string> = {
   login: 'Ingresar — Kora',
   terms: 'Términos y condiciones — Kora',
   privacy: 'Política de privacidad — Kora',
-  blog: 'Blog financiero CR — Kora',
 };
 
 const HASH_ROUTES: Record<string, Route> = {
@@ -25,8 +23,6 @@ const HASH_ROUTES: Record<string, Route> = {
   '#/privacy': 'privacy',
   '#privacidad': 'privacy',
   '#/privacidad': 'privacy',
-  '#blog': 'blog',
-  '#/blog': 'blog',
   '#login': 'login',
   '#/login': 'login',
 };
@@ -38,7 +34,6 @@ const PATH_ROUTES: Record<string, Route> = {
   '/terms': 'terms',
   '/privacidad': 'privacy',
   '/privacy': 'privacy',
-  '/blog': 'blog',
 };
 
 /** Returns the route a hash alias points to, or null for plain in-page anchors (#features, #pricing…). */
