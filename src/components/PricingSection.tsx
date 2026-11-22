@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
+import NumberFlow from '@number-flow/react';
 import { PRICING_CONTENT } from '../data/content';
 import { CheckCircleIcon, SparkleIcon } from './SvgIcons';
 import './PricingSection.css';
 
+function parsePriceNumber(price: string): number | null {
+  const match = price.match(/^\$(\d+(?:\.\d+)?)$/);
+  return match ? Number(match[1]) : null;
+}
+
 export const PricingSection: React.FC = () => {
   const [billing, setBilling] = useState<'monthly' | 'annually'>('monthly');
-  const [swapping, setSwapping] = useState(false);
 
   const handleSelectBilling = (next: 'monthly' | 'annually') => {
     if (next === billing) return;
-    setSwapping(true);
-    window.setTimeout(() => {
-      setBilling(next);
-      setSwapping(false);
-    }, 110);
+    setBilling(next);
   };
 
   return (
@@ -25,7 +26,7 @@ export const PricingSection: React.FC = () => {
             <span>{PRICING_CONTENT.badge}</span>
           </span>
 
-          <h2 id="pricing-heading" className="section-title-duotone">
+          <h2 id="pricing-heading" className="section-title-duotone" data-reveal-01="words" data-scroll>
             <span className="section-title-duotone__line">
               <span className="text-bright">{PRICING_CONTENT.titleStart}</span>{' '}
               <span className="text-muted">{PRICING_CONTENT.titleMuted1}</span>
@@ -36,7 +37,9 @@ export const PricingSection: React.FC = () => {
             </span>
           </h2>
 
-          <p className="section-subtitle">{PRICING_CONTENT.subtitle}</p>
+          <p className="section-subtitle" data-reveal-01="lines" data-scroll>
+            {PRICING_CONTENT.subtitle}
+          </p>
 
           <div
             className="pricing-toggle"
@@ -86,13 +89,23 @@ export const PricingSection: React.FC = () => {
                     <p className="price-card__desc">{tier.description}</p>
 
                     <div className="price-card__price-row">
-                      <span
-                        className={`price-card__amount tabular-nums ${
-                          swapping && price !== 'A medida' ? 'is-swapping' : ''
-                        }`}
-                      >
-                        {price}
-                      </span>
+                      {(() => {
+                        const numericPrice = parsePriceNumber(price);
+                        if (numericPrice !== null) {
+                          return (
+                            <NumberFlow
+                              value={numericPrice}
+                              format={{
+                                style: 'currency',
+                                currency: 'USD',
+                                maximumFractionDigits: 0,
+                              }}
+                              className="nf-number price-card__amount"
+                            />
+                          );
+                        }
+                        return <span className="price-card__amount tabular-nums">{price}</span>;
+                      })()}
                       {tier.periodLabel && (
                         <span className="price-card__period">{tier.periodLabel}</span>
                       )}

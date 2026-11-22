@@ -100,16 +100,6 @@
   line-height: 1;
   letter-spacing: -0.03em;
   color: #1E0E0A;
-  transition:
-    filter var(--dur-fast) var(--ease-out),
-    opacity var(--dur-fast) var(--ease-out),
-    transform var(--dur-fast) var(--ease-out);
-}
-
-.price-card__amount.is-swapping {
-  filter: blur(2px);
-  opacity: 0.52;
-  transform: translateY(3px);
 }
 
 .price-card__banner {

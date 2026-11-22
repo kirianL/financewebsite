@@ -103,7 +103,7 @@ export const HowItWorks: React.FC = () => {
             <span>{HOW_IT_WORKS_CONTENT.badge}</span>
           </span>
 
-          <h2 id="process-heading" className="section-title-duotone">
+          <h2 id="process-heading" className="section-title-duotone" data-reveal-01="words" data-scroll>
             <span className="section-title-duotone__line">
               <span className="text-bright">{HOW_IT_WORKS_CONTENT.titleStart}</span>{' '}
               <span className="text-muted">{HOW_IT_WORKS_CONTENT.titleMuted1}</span>
@@ -114,7 +114,9 @@ export const HowItWorks: React.FC = () => {
             </span>
           </h2>
 
-          <p className="section-subtitle">{HOW_IT_WORKS_CONTENT.subtitle}</p>
+          <p className="section-subtitle" data-reveal-01="lines" data-scroll>
+            {HOW_IT_WORKS_CONTENT.subtitle}
+          </p>
         </div>
 
         {/* Borderless, box-free symmetrical flow centered directly on #311916 */}

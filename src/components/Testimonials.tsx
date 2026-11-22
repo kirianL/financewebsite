@@ -98,7 +98,7 @@ export const Testimonials: React.FC = () => {
             <span>{TESTIMONIALS_CONTENT.badge}</span>
           </span>
 
-          <h2 id="testimonials-heading" className="section-title-duotone testimonials-title">
+          <h2 id="testimonials-heading" className="section-title-duotone testimonials-title" data-reveal-01="words" data-scroll>
             <span className="section-title-duotone__line">
               <span className="testimonials-text-bright">{TESTIMONIALS_CONTENT.titleStart}</span>{' '}
               <span className="testimonials-text-muted">{TESTIMONIALS_CONTENT.titleMuted1}</span>
@@ -109,7 +109,9 @@ export const Testimonials: React.FC = () => {
             </span>
           </h2>
 
-          <p className="testimonials-subtitle">{TESTIMONIALS_CONTENT.subtitle}</p>
+          <p className="testimonials-subtitle" data-reveal-01="lines" data-scroll>
+            {TESTIMONIALS_CONTENT.subtitle}
+          </p>
         </div>
 
         <div className="testimonial-showcase" data-reveal style={{ '--reveal-delay': '60ms' } as React.CSSProperties}>
