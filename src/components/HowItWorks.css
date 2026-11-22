@@ -41,29 +41,39 @@
 
 .process-line__base {
   fill: none;
-  stroke: rgba(255, 255, 255, 0.14);
-  stroke-width: 1.25;
+  stroke-width: 1;
   stroke-linecap: round;
+}
+
+.process-line__base--in {
+  stroke: url(#koraBaseLineIn);
+}
+
+.process-line__base--out {
+  stroke: url(#koraBaseLineOut);
 }
 
 .process-line__pulse {
   fill: none;
-  stroke: #EAE4DA;
-  stroke-width: 1.75;
+  stroke-width: 1.25;
   stroke-linecap: round;
-  stroke-dasharray: 22 148;
-  animation: koraStream 2.2s linear infinite;
+  stroke-dasharray: 44 186;
+  animation: koraStream 3.4s linear infinite;
   will-change: stroke-dashoffset;
 }
 
+.process-line__pulse--in {
+  stroke: url(#koraPulseIn);
+}
+
 .process-line__pulse--out {
-  stroke: #B7CE9E;
-  animation-duration: 2.4s;
+  stroke: url(#koraPulseOut);
+  animation-duration: 3.6s;
 }
 
 @keyframes koraStream {
   to {
-    stroke-dashoffset: -170;
+    stroke-dashoffset: -230;
   }
 }
 

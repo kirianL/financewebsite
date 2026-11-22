@@ -117,6 +117,32 @@ export const HowItWorks: React.FC = () => {
             preserveAspectRatio="none"
             aria-hidden="true"
           >
+            <defs>
+              <linearGradient id="koraBaseLineIn" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
+                <stop offset="22%" stopColor="#F5EFEB" stopOpacity="0.14" />
+                <stop offset="80%" stopColor="#F5EFEB" stopOpacity="0.14" />
+                <stop offset="100%" stopColor="#F5EFEB" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="koraBaseLineOut" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#F5EFEB" stopOpacity="0" />
+                <stop offset="20%" stopColor="#F5EFEB" stopOpacity="0.14" />
+                <stop offset="78%" stopColor="#F5EFEB" stopOpacity="0.14" />
+                <stop offset="100%" stopColor="#F5EFEB" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="koraPulseIn" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#EAE4DA" stopOpacity="0" />
+                <stop offset="35%" stopColor="#EAE4DA" stopOpacity="0.45" />
+                <stop offset="65%" stopColor="#EAE4DA" stopOpacity="0.45" />
+                <stop offset="100%" stopColor="#EAE4DA" stopOpacity="0" />
+              </linearGradient>
+              <linearGradient id="koraPulseOut" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#B7CE9E" stopOpacity="0" />
+                <stop offset="35%" stopColor="#B7CE9E" stopOpacity="0.48" />
+                <stop offset="65%" stopColor="#B7CE9E" stopOpacity="0.48" />
+                <stop offset="100%" stopColor="#B7CE9E" stopOpacity="0" />
+              </linearGradient>
+            </defs>
             {INPUT_PATHS.map((d, i) => {
               const nodeId = `bank-${i}`;
               const isHighlighted = activeNode === nodeId;
@@ -125,13 +151,13 @@ export const HowItWorks: React.FC = () => {
                 <g
                   key={nodeId}
                   className="process-conn"
-                  style={{ opacity: isDimmed ? 0.24 : 1 }}
+                  style={{ opacity: isDimmed ? 0.22 : 1 }}
                 >
-                  <path d={d} className="process-line__base" />
+                  <path d={d} className="process-line__base process-line__base--in" />
                   <path
                     d={d}
-                    className="process-line__pulse"
-                    style={{ animationDelay: `${i * -0.4}s` }}
+                    className="process-line__pulse process-line__pulse--in"
+                    style={{ animationDelay: `${i * -0.65}s` }}
                   />
                 </g>
               );
@@ -144,13 +170,13 @@ export const HowItWorks: React.FC = () => {
                 <g
                   key={item.id}
                   className="process-conn"
-                  style={{ opacity: isDimmed ? 0.24 : 1 }}
+                  style={{ opacity: isDimmed ? 0.22 : 1 }}
                 >
-                  <path d={item.d} className="process-line__base" />
+                  <path d={item.d} className="process-line__base process-line__base--out" />
                   <path
                     d={item.d}
                     className="process-line__pulse process-line__pulse--out"
-                    style={{ animationDelay: `${i * -0.55}s` }}
+                    style={{ animationDelay: `${i * -0.9}s` }}
                   />
                 </g>
               );
