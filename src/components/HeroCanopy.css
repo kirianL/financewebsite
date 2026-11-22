@@ -2,8 +2,8 @@
   position: relative;
   width: 100%;
   min-height: 100vh;
-  min-height: 100svh;
-  min-height: 100dvh;
+  min-height: 100lvh;
+  min-height: calc(100lvh + env(safe-area-inset-bottom, 0px));
   background: #FDF7EB;
   color: var(--color-hero-text);
   overflow: hidden;
@@ -158,8 +158,8 @@
 @media (max-width: 1024px) {
   .hero-canopy {
     min-height: 100vh;
-    min-height: 100svh;
-    min-height: 100dvh;
+    min-height: 100lvh;
+    min-height: calc(100lvh + env(safe-area-inset-bottom, 0px));
     height: auto;
     flex-direction: column;
     align-items: stretch;
@@ -207,8 +207,8 @@
 @media (max-width: 767px) {
   .hero-canopy {
     min-height: 100vh;
-    min-height: 100svh;
-    min-height: 100dvh;
+    min-height: 100lvh;
+    min-height: calc(100lvh + env(safe-area-inset-bottom, 0px));
     height: auto;
     padding-top: calc(var(--header-height) + 18px);
     padding-bottom: 0;
@@ -241,7 +241,7 @@
     width: 100%;
     height: auto;
     flex: 1 0 auto;
-    min-height: 240px;
+    min-height: 260px;
     margin-top: auto;
     display: flex;
     align-items: flex-end;
@@ -254,12 +254,12 @@
     position: relative;
     right: auto;
     bottom: auto;
-    width: 116%;
+    width: 128%;
     max-width: none;
     height: auto;
     max-height: none;
     margin-top: auto;
-    margin-left: -8%;
+    margin-left: -14%;
     object-fit: contain;
     object-position: center bottom;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%);
