@@ -192,7 +192,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
               </h1>
 
               <p className="login-subtitle">
-                Accede a tu panel multi-banco conectado a BAC, BCR, Banco Nacional, SINPE Empresarial y tipo de cambio MONEX.
+                Accede a tu panel multibanco conectado a BAC, BCR, Banco Nacional, SINPE empresarial y tipo de cambio MONEX.
               </p>
             </div>
 
@@ -231,7 +231,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
                     <button
                       type="button"
                       className="login-sso-btn"
-                      onClick={() => handleSsoClick('Google Workspace')}
+                      onClick={() => handleSsoClick('Google')}
                     >
                       <GoogleIcon size={17} />
                       <span>Google</span>
@@ -389,7 +389,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
                           <>
                             <span>
                               {authMode === 'password'
-                                ? 'Ingresar a Tesorería'
+                                ? 'Ingresar a tesorería'
                                 : 'Continuar con código único'}
                             </span>
                             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -558,10 +558,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({
               <div className="login-showcase__heading">
                 <h2 className="login-showcase__title">
                   <span className="text-bright">Liquidez</span>{' '}
-                  <span className="text-muted">Consolidada</span>
+                  <span className="text-muted">consolidada</span>
                   <br />
-                  <span className="text-muted">En Tiempo</span>{' '}
-                  <span className="text-bright">Real</span>
+                  <span className="text-muted">en tiempo</span>{' '}
+                  <span className="text-bright">real</span>
                 </h2>
               </div>
 
@@ -570,7 +570,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({
                 <div className="login-showcase__card">
                   <div className="login-showcase__card-head">
                     <div>
-                      <div className="login-showcase__card-label">Liquidez Total</div>
+                      <div className="login-showcase__card-label">Liquidez total</div>
                       <div className="login-showcase__card-balance tabular-nums">₡138,450,200</div>
                       <div className="login-showcase__card-trend">
                         <TrendUpIcon size={9} className="wallet-ui__trend-icon" />
