@@ -72,12 +72,12 @@ export const FooterSynais: React.FC = () => {
             <p className="footer-synais__helper">{FOOTER_CONTENT.newsletterHelper}</p>
             {status === 'error' && (
               <p className="footer-synais__feedback is-error" role="alert">
-                Please enter a valid email address.
+                Por favor ingresa un correo electrónico válido.
               </p>
             )}
             {status === 'success' && (
               <p className="footer-synais__feedback is-success" role="status">
-                Subscribed to Kora updates.
+                Suscrito a las actualizaciones de Kora CR.
               </p>
             )}
           </div>
@@ -112,7 +112,7 @@ export const FooterSynais: React.FC = () => {
         </div>
       </div>
 
-      <div className="footer-synais__wordmark-wrap" aria-hidden="true">
+      <div className="footer-synais__wordmark-wrap" aria-hidden="true" data-reveal>
         <div className="footer-synais__wordmark">{FOOTER_CONTENT.brand}</div>
       </div>
     </footer>

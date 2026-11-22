@@ -1,7 +1,9 @@
 .hero-canopy {
   position: relative;
   width: 100%;
+  min-height: 100vh;
   min-height: 100svh;
+  min-height: 100dvh;
   background: #FDF7EB;
   color: var(--color-hero-text);
   overflow: hidden;
@@ -155,8 +157,10 @@
 
 @media (max-width: 1024px) {
   .hero-canopy {
+    min-height: 100vh;
     min-height: 100svh;
-    height: 100svh;
+    min-height: 100dvh;
+    height: auto;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
@@ -174,15 +178,15 @@
     position: relative;
     inset: auto;
     width: 100%;
-    flex: 1;
-    min-height: 260px;
-    margin-top: 8px;
+    height: auto;
+    flex: 1 0 auto;
+    min-height: 280px;
+    margin-top: auto;
     display: flex;
     align-items: flex-end;
-  }
-
-  .hero-canopy__moss-ext {
-    display: none;
+    justify-content: center;
+    background: #FDF7EB;
+    overflow: hidden;
   }
 
   .hero-canopy__img {
@@ -190,20 +194,23 @@
     right: auto;
     bottom: auto;
     width: 100%;
-    height: 100%;
+    height: auto;
     max-height: none;
-    object-fit: cover;
-    object-position: 72% bottom;
+    margin-top: auto;
+    object-fit: contain;
+    object-position: center bottom;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 18%);
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .hero-canopy {
+    min-height: 100vh;
     min-height: 100svh;
-    height: 100svh;
-    padding-top: 92px;
+    min-height: 100dvh;
+    height: auto;
+    padding-top: calc(var(--header-height) + 18px);
     padding-bottom: 0;
     flex-direction: column;
     align-items: stretch;
@@ -232,22 +239,29 @@
     position: relative;
     inset: auto;
     width: 100%;
-    flex: 1;
+    height: auto;
+    flex: 1 0 auto;
     min-height: 240px;
-    margin-top: 4px;
+    margin-top: auto;
     display: flex;
     align-items: flex-end;
+    justify-content: center;
+    background: #FDF7EB;
+    overflow: hidden;
   }
 
   .hero-canopy__img {
     position: relative;
     right: auto;
     bottom: auto;
-    width: 100%;
-    height: 100%;
+    width: 116%;
+    max-width: none;
+    height: auto;
     max-height: none;
-    object-fit: cover;
-    object-position: 74% bottom;
+    margin-top: auto;
+    margin-left: -8%;
+    object-fit: contain;
+    object-position: center bottom;
     -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 18%);
     mask-image: linear-gradient(to bottom, transparent 0%, black 18%);
   }

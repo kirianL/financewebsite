@@ -6,8 +6,11 @@ import { FeaturesShowcase } from './components/FeaturesShowcase';
 import { IntegrationsGrid } from './components/IntegrationsGrid';
 import { PricingSection } from './components/PricingSection';
 import { FooterSynais } from './components/FooterSynais';
+import { useReveal } from './hooks/useReveal';
 
 export const App: React.FC = () => {
+  useReveal();
+
   return (
     <>
       <a href="#main" className="skip-link">

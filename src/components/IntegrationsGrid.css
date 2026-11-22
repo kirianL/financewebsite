@@ -1,7 +1,8 @@
 .integrations-section {
   background-color: var(--color-platform-bg);
   color: var(--color-platform-text);
-  padding-block: clamp(48px, 6vw, 84px);
+  padding-block: clamp(52px, 6.5vw, 88px);
+  overflow-x: clip;
 }
 
 .integrations-section__inner {
@@ -11,12 +12,18 @@
   text-align: center;
 }
 
+.integrations-section__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .integrations-grid {
   margin-top: 44px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
 }
 
@@ -24,33 +31,74 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 12px;
+  gap: 14px;
 }
 
 .integration-tile {
-  width: 66px;
-  height: 66px;
+  position: relative;
+  width: 60px;
+  height: 60px;
   border-radius: 6px;
-  background: var(--color-tile-bg);
+  background: #EAE4DA;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.24);
-  transition: transform var(--dur-fast) var(--ease-out);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.26);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out),
+    opacity var(--dur-reveal) var(--ease-out-quint);
 }
 
-.integration-tile:hover {
-  transform: translateY(-2px);
+.integration-tile__tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) scale(0.95) translateY(3px);
+  transform-origin: bottom center;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: rgba(18, 10, 8, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #F5EFEB;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 20;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.36);
+  transition:
+    opacity 130ms var(--ease-out),
+    transform 130ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .integration-tile__tooltip {
+    display: block;
+  }
+
+  .integration-tile:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
+    z-index: 10;
+  }
+
+  .integration-tile:hover .integration-tile__tooltip {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) translateY(0);
+  }
 }
 
 @media (max-width: 640px) {
   .integration-tile {
-    width: 56px;
-    height: 56px;
+    width: 54px;
+    height: 54px;
   }
 
   .integration-tile svg {
-    width: 34px;
-    height: 34px;
+    width: 38px;
+    height: 38px;
   }
 }

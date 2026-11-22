@@ -1,6 +1,6 @@
 import React from 'react';
 import { INTEGRATIONS_CONTENT } from '../data/content';
-import { IntegrationTileIcon, SparkleIcon } from './SvgIcons';
+import { COSTA_RICA_BANKS, IntegrationTileIcon, SparkleIcon } from './SvgIcons';
 import './IntegrationsGrid.css';
 
 const TOP_ROW_IDS = [0, 1, 2, 3, 4, 5, 6, 7, 8];
@@ -10,38 +10,62 @@ export const IntegrationsGrid: React.FC = () => {
   return (
     <section id="integrations" className="integrations-section" aria-labelledby="integrations-heading">
       <div className="container integrations-section__inner">
-        <span className="section-badge">
-          <SparkleIcon size={11} />
-          <span>{INTEGRATIONS_CONTENT.badge}</span>
-        </span>
-
-        <h2 id="integrations-heading" className="section-title-duotone">
-          <span className="section-title-duotone__line">
-            <span className="text-bright">{INTEGRATIONS_CONTENT.titleStart}</span>{' '}
-            <span className="text-muted">{INTEGRATIONS_CONTENT.titleMuted1}</span>
+        <div className="integrations-section__head" data-reveal>
+          <span className="section-badge">
+            <SparkleIcon size={11} />
+            <span>{INTEGRATIONS_CONTENT.badge}</span>
           </span>
-          <span className="section-title-duotone__line">
-            <span className="text-muted">{INTEGRATIONS_CONTENT.titleMuted2}</span>{' '}
-            <span className="text-bright">{INTEGRATIONS_CONTENT.titleEnd}</span>
-          </span>
-        </h2>
 
-        <p className="section-subtitle">{INTEGRATIONS_CONTENT.subtitle}</p>
+          <h2 id="integrations-heading" className="section-title-duotone">
+            <span className="section-title-duotone__line">
+              <span className="text-bright">{INTEGRATIONS_CONTENT.titleStart}</span>{' '}
+              <span className="text-muted">{INTEGRATIONS_CONTENT.titleMuted1}</span>
+            </span>
+            <span className="section-title-duotone__line">
+              <span className="text-muted">{INTEGRATIONS_CONTENT.titleMuted2}</span>{' '}
+              <span className="text-bright">{INTEGRATIONS_CONTENT.titleEnd}</span>
+            </span>
+          </h2>
 
-        <div className="integrations-grid" aria-label="Supported financial ecosystem integrations">
+          <p className="section-subtitle">{INTEGRATIONS_CONTENT.subtitle}</p>
+        </div>
+
+        <div className="integrations-grid" aria-label="Costa Rica banking and financial ecosystem integrations">
           <div className="integrations-grid__row">
-            {TOP_ROW_IDS.map((id) => (
-              <div key={id} className="integration-tile">
-                <IntegrationTileIcon index={id} />
-              </div>
-            ))}
+            {TOP_ROW_IDS.map((id, idx) => {
+              const bank = COSTA_RICA_BANKS[id];
+              return (
+                <div
+                  key={id}
+                  className="integration-tile"
+                  data-reveal
+                  data-bank={bank?.fullName}
+                  aria-label={bank?.fullName}
+                  style={{ '--reveal-delay': `${idx * 32}ms` } as React.CSSProperties}
+                >
+                  <IntegrationTileIcon index={id} />
+                  {bank && <span className="integration-tile__tooltip">{bank.fullName}</span>}
+                </div>
+              );
+            })}
           </div>
           <div className="integrations-grid__row">
-            {BOTTOM_ROW_IDS.map((id) => (
-              <div key={id} className="integration-tile">
-                <IntegrationTileIcon index={id} />
-              </div>
-            ))}
+            {BOTTOM_ROW_IDS.map((id, idx) => {
+              const bank = COSTA_RICA_BANKS[id];
+              return (
+                <div
+                  key={id}
+                  className="integration-tile"
+                  data-reveal
+                  data-bank={bank?.fullName}
+                  aria-label={bank?.fullName}
+                  style={{ '--reveal-delay': `${(idx + 3) * 35}ms` } as React.CSSProperties}
+                >
+                  <IntegrationTileIcon index={id} />
+                  {bank && <span className="integration-tile__tooltip">{bank.fullName}</span>}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

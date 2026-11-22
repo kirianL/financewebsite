@@ -36,7 +36,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   }, [isOpen, onClose]);
 
   const handleInertAction = (provider: string) => {
-    setNotice(`${provider} sign-in is disabled in this design preview.`);
+    setNotice(`El acceso con ${provider} está deshabilitado en esta vista previa.`);
   };
 
   return (
@@ -62,7 +62,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
             ref={closeBtnRef}
             type="button"
             className="login-modal__close"
-            aria-label="Close sign in dialog"
+            aria-label="Cerrar ventana de acceso"
             tabIndex={isOpen ? 0 : -1}
             onClick={onClose}
           >
@@ -71,10 +71,10 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
         </div>
 
         <h2 id="login-modal-title" className="login-modal__title">
-          Welcome back
+          Bienvenido de nuevo
         </h2>
         <p className="login-modal__subtitle">
-          Sign in to your {HERO_CONTENT.brand} onchain treasury &amp; multi-currency workspace.
+          Ingresa a tu tesorería multi-banco de {HERO_CONTENT.brand} conectada a SINPE, BCCR y banca nacional.
         </p>
 
         <div className="login-modal__providers">
@@ -85,7 +85,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
             onClick={() => handleInertAction('Google')}
           >
             <GoogleIcon size={18} />
-            <span>Continue with Google</span>
+            <span>Continuar con Google</span>
           </button>
 
           <button
@@ -95,39 +95,39 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
             onClick={() => handleInertAction('Apple')}
           >
             <AppleIcon size={18} />
-            <span>Continue with Apple</span>
+            <span>Continuar con Apple</span>
           </button>
         </div>
 
         <div className="login-modal__divider" aria-hidden="true">
-          <span>or</span>
+          <span>o</span>
         </div>
 
         <form
           className="login-modal__form"
           onSubmit={(e) => {
             e.preventDefault();
-            handleInertAction('Work email');
+            handleInertAction('Correo corporativo');
           }}
         >
           <label htmlFor="login-work-email" className="sr-only">
-            Work email
+            Correo corporativo
           </label>
           <input
             id="login-work-email"
             type="email"
-            placeholder="name@company.cr"
+            placeholder="finanzas@empresa.co.cr"
             className="login-modal__input"
             tabIndex={isOpen ? 0 : -1}
             readOnly
-            onClick={() => handleInertAction('Work email')}
+            onClick={() => handleInertAction('Correo corporativo')}
           />
           <button
             type="submit"
             className="login-modal__btn login-modal__btn--primary"
             tabIndex={isOpen ? 0 : -1}
           >
-            Continue with Email
+            Continuar con Correo
           </button>
         </form>
 
@@ -138,7 +138,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
         )}
 
         <p className="login-modal__terms">
-          Protected by BCCR-compliant custody standards. Preview environment only.
+          Protegido bajo estándares de seguridad SUGEF y BCCR. Entorno de vista previa.
         </p>
       </div>
     </div>

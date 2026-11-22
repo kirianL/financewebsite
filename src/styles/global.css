@@ -89,9 +89,30 @@ h1, h2 {
   font-variant-numeric: tabular-nums;
 }
 
+/* Scroll-triggered entrance choreography (emil-design-eng / find-animation-opportunities) */
+[data-reveal] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity var(--dur-reveal) var(--ease-out-quint),
+    transform var(--dur-reveal) var(--ease-out-quint);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal][data-revealed="false"] {
+  opacity: 0;
+  transform: translateY(14px) scale(0.985);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  [data-reveal],
+  [data-reveal][data-revealed="false"] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
   *, *::before, *::after {
     transition-duration: 0.01ms !important;

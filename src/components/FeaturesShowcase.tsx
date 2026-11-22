@@ -8,8 +8,8 @@ import './FeaturesShowcase.css';
 export const FeaturesShowcase: React.FC = () => {
   return (
     <section id="features" className="features-section" aria-labelledby="features-heading">
-      <div className="container">
-        <div className="features-showcase">
+      <div className="features-section__container">
+        <div className="features-showcase" data-reveal>
           <div className="features-showcase__head">
             <span className="section-badge">
               <SparkleIcon size={11} />

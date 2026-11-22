@@ -65,7 +65,7 @@ export const Navbar: React.FC = () => {
                 setLoginOpen(true);
               }}
             >
-              Login
+              Ingresar
             </button>
             <button
               ref={burgerRef}
@@ -138,7 +138,7 @@ export const Navbar: React.FC = () => {
                 setLoginOpen(true);
               }}
             >
-              Sign in to {HERO_CONTENT.brand}
+              Ingresar a {HERO_CONTENT.brand}
             </button>
             <a
               href="#pricing"

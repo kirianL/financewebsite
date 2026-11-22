@@ -59,9 +59,13 @@
 
   /* Motion (emil-design-eng curves) */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+  --dur-press: 120ms;
   --dur-fast: 160ms;
   --dur-mid: 240ms;
+  --dur-reveal: 540ms;
 }
 
 @theme {
