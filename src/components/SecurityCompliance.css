@@ -1,36 +1,16 @@
 .security-section {
   background-color: var(--color-platform-bg);
   color: var(--color-platform-text);
-  padding-block: clamp(48px, 6.5vw, 88px);
+  padding-block: clamp(56px, 7vw, 96px);
+  overflow-x: clip;
 }
 
-.security-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: clamp(24px, 4vw, 48px);
-  align-items: center;
-}
-
-.security-visual {
-  border-radius: 14px;
-  overflow: hidden;
-  aspect-ratio: 4 / 3;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: #1B0D0A;
-}
-
-.security-visual__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.security-content {
+.security-head {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
+  max-width: 720px;
 }
 
 .security-title {
@@ -39,66 +19,176 @@
 
 .security-subtitle {
   margin-top: 12px;
-  max-width: 500px;
+  max-width: 520px;
 }
 
-.security-grid {
-  margin-top: 28px;
-  width: 100%;
+.security-bento {
+  margin-top: clamp(32px, 4vw, 48px);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(12px, 1.5vw, 18px);
+  align-items: start;
 }
 
-.security-pillar {
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  padding: 16px;
+.sec-card {
+  min-width: 0;
+  border-radius: 16px;
+  padding: clamp(18px, 1.8vw, 22px);
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  transition: transform var(--dur-fast) var(--ease-out);
+  gap: 14px;
+  min-height: 332px;
+  transition: transform var(--dur-mid) var(--ease-out-quint);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .security-pillar:hover {
-    transform: translateY(-2px);
-  }
+.sec-card--cream {
+  background: #FAF6EC;
+  color: #1E0E0A;
 }
 
-.security-pillar__icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
+.sec-card--stone {
   background: #EAE4DA;
-  color: #2E1814;
-  display: inline-flex;
+  color: #1E0E0A;
+}
+
+.sec-card--offset {
+  margin-top: 32px;
+}
+
+.sec-card__label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #7A7068;
+  line-height: 1;
+}
+
+.sec-card__visual {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.security-pillar__title {
-  font-size: 14.5px;
+.sec-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  mix-blend-mode: multiply;
+}
+
+.sec-card__visual--ui {
+  padding: 6px;
+}
+
+/* Card 02 — crisp embedded balance card */
+.sec-balance {
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid rgba(30, 14, 10, 0.06);
+  border-radius: 12px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 10px 26px rgba(30, 14, 10, 0.06);
+}
+
+.sec-balance__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sec-balance__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #476330;
+}
+
+.sec-balance__label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #6E655C;
+}
+
+.sec-balance__value {
+  font-size: clamp(20px, 1.9vw, 24px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #1E0E0A;
+  line-height: 1.1;
+}
+
+.sec-balance__trend {
+  font-size: 11.5px;
   font-weight: 600;
-  color: #FFFFFF;
+  color: #476330;
 }
 
-.security-pillar__desc {
-  margin-top: 4px;
+.sec-card__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: auto;
+}
+
+.sec-card__stat {
+  font-size: clamp(24px, 2.3vw, 30px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: #1E0E0A;
+  line-height: 1.05;
+}
+
+.sec-card__caption {
   font-size: 12.5px;
-  line-height: 1.48;
-  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.4;
+  color: #655C54;
 }
 
-@media (max-width: 900px) {
-  .security-layout {
-    grid-template-columns: 1fr;
+@media (hover: hover) and (pointer: fine) {
+  .sec-card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 960px) {
+  .security-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sec-card {
+    min-height: 300px;
+  }
+
+  .sec-card--offset {
+    margin-top: 0;
   }
 }
 
 @media (max-width: 560px) {
-  .security-grid {
+  .security-bento {
     grid-template-columns: 1fr;
+  }
+
+  .sec-card {
+    min-height: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sec-card {
+    transition: none;
+  }
+
+  .sec-card:hover {
+    transform: none;
   }
 }

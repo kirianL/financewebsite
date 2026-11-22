@@ -55,7 +55,7 @@ export const HowItWorks: React.FC = () => {
               alt="Conexión de cuentas bancarias de Costa Rica al panel de tesorería Kora"
               width={1344}
               height={768}
-              loading="lazy"
+              loading="eager"
               decoding="async"
               className="process-visual__img"
             />

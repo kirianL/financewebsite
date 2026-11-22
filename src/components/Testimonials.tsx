@@ -50,7 +50,7 @@ export const Testimonials: React.FC = () => {
                 alt={current.author}
                 width={400}
                 height={400}
-                loading="lazy"
+                loading="eager"
                 decoding="async"
                 className="testimonial-feature__img"
               />
@@ -83,7 +83,7 @@ export const Testimonials: React.FC = () => {
                     alt=""
                     width={32}
                     height={32}
-                    loading="lazy"
+                    loading="eager"
                     className="testimonials-tab__avatar"
                   />
                   <span className="testimonials-tab__text">
