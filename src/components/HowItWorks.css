@@ -21,7 +21,7 @@
   margin-top: 44px;
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 0.96fr) minmax(0, 1.04fr);
   gap: 20px;
   align-items: stretch;
 }
@@ -33,21 +33,37 @@
 }
 
 .process-step-card {
+  width: 100%;
+  text-align: left;
   background: #EAE4DA;
   color: #1E0E0A;
+  border: 1px solid transparent;
   border-radius: 10px;
   padding: 20px 22px;
   display: flex;
   align-items: flex-start;
   gap: 16px;
   flex: 1;
-  transition: transform var(--dur-fast) var(--ease-out);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .process-step-card:hover {
     transform: translateY(-2px);
+    background: #F4EFE5;
   }
+}
+
+.process-step-card:active {
+  transform: scale(0.985);
+}
+
+.process-step-card.is-active {
+  background: #FAF6EC;
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 .process-step-card__num {
@@ -78,27 +94,270 @@
   color: #5E544C;
 }
 
+/* ── Minimalist Animated Banks-to-Kora Flow Stage ── */
 .process-visual {
+  position: relative;
+  min-height: 340px;
   border-radius: 12px;
   overflow: hidden;
-  background: #1B0D0A;
+  background-color: #130907;
+  background-image: url('/images/feature-tray-glow-bg.webp');
+  background-size: cover;
+  background-position: center;
   border: 1px solid rgba(255, 255, 255, 0.14);
-  display: flex;
+  isolation: isolate;
 }
 
-.process-visual__img {
+.process-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(28, 13, 10, 0.55) 0%, rgba(12, 6, 5, 0.84) 100%);
+  pointer-events: none;
+}
+
+.process-diagram__lines {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.process-conn {
+  transition: opacity var(--dur-mid) var(--ease-out);
+}
+
+.process-conn__base {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.16);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.process-conn__pulse {
+  fill: none;
+  stroke: #E8CFA4;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 12 44;
+  animation: hiwFlow 1.9s linear infinite;
+  will-change: stroke-dashoffset;
+}
+
+.process-conn__pulse--out {
+  stroke: #7CD99B;
+  animation-duration: 2.1s;
+}
+
+@keyframes hiwFlow {
+  to {
+    stroke-dashoffset: -56;
+  }
+}
+
+.process-diagram__nodes {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  min-height: 340px;
+  padding: 22px clamp(16px, 3vw, 34px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* Pure rounded bank SVG badges — zero grey outer containers */
+.process-diagram__banks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  height: 296px;
+}
+
+.process-bank-node {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.45));
+  transition:
+    opacity var(--dur-mid) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out-quint);
+}
+
+.process-bank-node svg {
+  width: 38px;
+  height: 38px;
   display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .process-bank-node:hover {
+    transform: scale(1.08);
+  }
+}
+
+/* Central Kora Hub */
+.process-hub {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    opacity var(--dur-mid) var(--ease-out),
+    transform var(--dur-mid) var(--ease-out-quint);
+}
+
+.process-hub__ring {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 1px solid rgba(232, 207, 164, 0.28);
+  animation: hubPulse 2.8s var(--ease-out) infinite;
+  pointer-events: none;
+}
+
+@keyframes hubPulse {
+  0% {
+    transform: scale(0.84);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1.26);
+    opacity: 0;
+  }
+}
+
+.process-hub__core {
+  position: relative;
+  z-index: 1;
+  width: 78px;
+  height: 78px;
+  border-radius: 20px;
+  background: rgba(49, 25, 22, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.5);
+}
+
+.process-hub__name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #F5EFEB;
+}
+
+/* Right Output Status Chips */
+.process-diagram__outputs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 38px;
+  flex-shrink: 0;
+}
+
+.process-output-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: #F5EFEB;
+  color: #2E1814;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+  transition:
+    opacity var(--dur-mid) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out-quint);
+}
+
+.process-output-chip__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #23884B;
+}
+
+/* Interactive Phase Highlighting */
+.process-visual[data-phase='link'] .process-conn--output,
+.process-visual[data-phase='link'] .process-output-chip {
+  opacity: 0.3;
+}
+
+.process-visual[data-phase='link'] .process-bank-node {
+  transform: scale(1.06);
+}
+
+.process-visual[data-phase='reconcile'] .process-bank-node {
+  opacity: 0.45;
+}
+
+.process-visual[data-phase='reconcile'] .process-conn--output:not(.process-conn--monex),
+.process-visual[data-phase='reconcile'] .process-output-chip:not(.process-output-chip--monex) {
+  opacity: 0.35;
+}
+
+.process-visual[data-phase='reconcile'] .process-hub {
+  transform: scale(1.06);
+}
+
+.process-visual[data-phase='report'] .process-bank-node,
+.process-visual[data-phase='report'] .process-conn--input {
+  opacity: 0.35;
+}
+
+.process-visual[data-phase='report'] .process-output-chip {
+  transform: scale(1.04);
 }
 
 @media (max-width: 900px) {
   .process-layout {
     grid-template-columns: 1fr;
   }
+}
 
-  .process-visual {
-    aspect-ratio: 16 / 9;
+@media (max-width: 520px) {
+  .process-diagram__nodes {
+    padding: 18px 14px;
+  }
+
+  .process-bank-node svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .process-hub__core {
+    width: 66px;
+    height: 66px;
+    border-radius: 16px;
+  }
+
+  .process-output-chip {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .process-conn__pulse,
+  .process-hub__ring {
+    animation: none;
+  }
+
+  .process-hub__ring {
+    opacity: 0.35;
   }
 }
