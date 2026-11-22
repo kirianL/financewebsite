@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FOOTER_CONTENT } from '../data/content';
+import { matchHashRoute, ROUTE_PATHS, type Route } from '../routing/routes';
 import {
   GithubIcon,
   LinkedinIcon,
@@ -11,9 +12,13 @@ import './FooterSynais.css';
 
 interface FooterSynaisProps {
   onNavigateHome?: () => void;
+  onNavigateRoute?: (route: Route) => void;
 }
 
-export const FooterSynais: React.FC<FooterSynaisProps> = ({ onNavigateHome }) => {
+export const FooterSynais: React.FC<FooterSynaisProps> = ({
+  onNavigateHome,
+  onNavigateRoute,
+}) => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'error' | 'success'>('idle');
 
@@ -131,13 +136,25 @@ export const FooterSynais: React.FC<FooterSynaisProps> = ({ onNavigateHome }) =>
             <div key={col.heading} className="footer-synais__col">
               <h4 className="footer-synais__col-heading">{col.heading}</h4>
               <ul className="footer-synais__col-list">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <a href={link.href} className="footer-synais__col-link">
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
+                {col.links.map((link) => {
+                  const targetRoute = matchHashRoute(link.href);
+                  const href = targetRoute ? ROUTE_PATHS[targetRoute] : link.href;
+                  return (
+                    <li key={link.label}>
+                      <a
+                        href={href}
+                        className="footer-synais__col-link"
+                        onClick={(e) => {
+                          if (!targetRoute || !onNavigateRoute) return;
+                          e.preventDefault();
+                          onNavigateRoute(targetRoute);
+                        }}
+                      >
+                        {link.label}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -146,11 +163,24 @@ export const FooterSynais: React.FC<FooterSynaisProps> = ({ onNavigateHome }) =>
         <div className="footer-synais__legal">
           <span>{FOOTER_CONTENT.copyright}</span>
           <div className="footer-synais__legal-links">
-            {FOOTER_CONTENT.legalLinks.map((link) => (
-              <a key={link.label} href={link.href} className="footer-synais__legal-link">
-                {link.label}
-              </a>
-            ))}
+            {FOOTER_CONTENT.legalLinks.map((link) => {
+              const targetRoute = matchHashRoute(link.href);
+              const href = targetRoute ? ROUTE_PATHS[targetRoute] : link.href;
+              return (
+                <a
+                  key={link.label}
+                  href={href}
+                  className="footer-synais__legal-link"
+                  onClick={(e) => {
+                    if (!targetRoute || !onNavigateRoute) return;
+                    e.preventDefault();
+                    onNavigateRoute(targetRoute);
+                  }}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>

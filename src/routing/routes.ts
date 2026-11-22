@@ -48,8 +48,8 @@ export function matchHashRoute(hash: string): Route | null {
 
 export function resolveRoute(): Route {
   if (typeof window === 'undefined') return 'home';
+  const byHash = matchHashRoute(window.location.hash);
+  if (byHash) return byHash;
   const path = window.location.pathname.replace(/\/+$/, '') || '/';
-  const byPath = PATH_ROUTES[path.toLowerCase()];
-  if (byPath) return byPath;
-  return matchHashRoute(window.location.hash) ?? 'home';
+  return PATH_ROUTES[path.toLowerCase()] ?? 'home';
 }

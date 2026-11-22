@@ -122,7 +122,10 @@ export const App: React.FC = () => {
             {route === 'blog' && (
               <BlogPage onNavigateHome={() => navigateTo('home')} />
             )}
-            <FooterSynais onNavigateHome={() => navigateTo('home')} />
+            <FooterSynais
+              onNavigateHome={() => navigateTo('home')}
+              onNavigateRoute={(next) => navigateTo(next)}
+            />
           </div>
         </>
       )}
